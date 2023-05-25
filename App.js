@@ -1,9 +1,9 @@
 import React from 'react';
-import useAuthentication from './src/utils/hooks/useAuthentication';
+import getAuthenticatedUser from './src/utils/hooks/getAuthenticatedUser';
 import { Auth, User } from './src/stacks';
 
 function App() {
-  const isLoggedIn = useAuthentication();
+  const isLoggedIn = getAuthenticatedUser();
 
   return (
     isLoggedIn ? <Auth /> : <User />
