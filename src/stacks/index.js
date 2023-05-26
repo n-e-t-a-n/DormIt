@@ -1,2 +1,2 @@
-export {default as Auth} from './AuthStack';
-export {default as User} from './UserStack';
+export {default as Auth} from './Auth';
+export {default as User} from './User';
