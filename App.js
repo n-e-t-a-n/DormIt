@@ -6,7 +6,7 @@ function App() {
   const isLoggedIn = getAuthenticatedUser();
 
   return (
-    isLoggedIn ? <Auth /> : <User />
+    isLoggedIn ? <User /> : <Auth />
   );
 };
 
