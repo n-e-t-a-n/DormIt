@@ -13,7 +13,7 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('');
 
   const handleRegister = async () => {
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email?.trim(), password)
     .then(() => {
       navigation.goBack();
       createToastShort("Account created successfully!");

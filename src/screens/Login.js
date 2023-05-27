@@ -13,7 +13,7 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email?.trim(), password)
     .then(() => {
       createToastShort("Successfully logged in.");
       navigation.navigate('UserStack', { screen:'Home' });
