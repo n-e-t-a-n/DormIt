@@ -19,11 +19,21 @@ export default function Login({ navigation }) {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      navigation.pop(1);
+      navigation.goBack();
+      createToast("Account created successfully!");
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      let errorCode = error.code
+                      .replace('auth/', '')
+                      .replace(/-/g, ' ');
+      
+      errorCode = errorCode
+                  .charAt(0)
+                  .toUpperCase() + 
+                  errorCode.slice(1) +
+                  '.';
+
+      createToast(errorCode);
     });
   };
 
@@ -39,7 +49,7 @@ export default function Login({ navigation }) {
         onChangeText={(text) => setPassword(text)}
       />
       <Button title="Sign In" onPress={handleRegister} />
-      <Button title="Cancel" onPress={() => navigation.pop(1)} />
+      <Button title="Cancel" onPress={() => navigation.goBack()} />
     </View>
   );
 }
