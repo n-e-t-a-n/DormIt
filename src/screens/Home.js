@@ -6,14 +6,25 @@ import { StyleSheet,
          View,
          Pressable } from 'react-native';
 import { homeStyles } from '../styles';
+import { createToastShort } from '../utils';
 import { getAuth, signOut } from 'firebase/auth';
 
 export default function Home() {
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
-      
-    }).catch((error) => {});
+      createToastShort("You've logged out.");
+    }).catch((error) => {
+      let warningMessage = error.code
+                           .replace('auth/', '')
+                           .replace(/-/g, ' ');
+
+      createToastShort(warningMessage
+                        .charAt(0)
+                        .toUpperCase() + 
+                        warningMessage.slice(1) +
+                        '.');
+    });
   }
 
   return (

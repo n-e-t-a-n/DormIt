@@ -6,6 +6,7 @@ import { View,
          TextInput, 
          Pressable } from 'react-native';
 import { loginStyles } from '../styles';
+import { createToastShort } from '../utils';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -13,12 +14,19 @@ export default function Login({ navigation }) {
 
   const handleLogin = async () => {
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+    .then(() => {
+      createToastShort("Successfully logged in.");
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      let warningMessage = error.code
+                           .replace('auth/', '')
+                           .replace(/-/g, ' ');
+
+      createToastShort(warningMessage
+                       .charAt(0)
+                       .toUpperCase() + 
+                       warningMessage.slice(1) +
+                       '.');
     });
   };
 
