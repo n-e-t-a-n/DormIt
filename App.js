@@ -1,12 +1,13 @@
 import React from 'react';
-import getAuthenticatedUser from './src/utils/hooks/getAuthenticatedUser';
+import { getUser } from './src/utils';
 import { Auth, User } from './src/stacks';
+import { NavigationContainer } from '@react-navigation/native';
 
 function App() {
-  const isLoggedIn = getAuthenticatedUser();
-
   return (
-    isLoggedIn ? <User /> : <Auth />
+    <NavigationContainer>
+        <Auth />
+    </NavigationContainer>
   );
 };
 

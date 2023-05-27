@@ -1,18 +1,21 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import User from './User';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Login, Register } from '../screens';
 
-import { Welcome, Login } from '../screens';
-
-const Stack = createStackNavigator();
+const AuthStack = createStackNavigator();
 
 export default function Auth() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Welcome" component={Welcome} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <AuthStack.Navigator initialRouteName="Login">
+      <AuthStack.Screen name="Login" component={Login} />
+      <AuthStack.Screen name="Register" component={Register} />
+
+      <AuthStack.Screen
+        name="UserStack"
+        component={User}
+        options={{ headerShown: false }} 
+      />
+    </AuthStack.Navigator>
   );
 }

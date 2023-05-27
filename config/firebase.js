@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { FIREBASE_API_KEY,
          FIREBASE_AUTH_DOMAIN,
          FIREBASE_PROJECT_ID,
@@ -17,6 +18,13 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
+const startFirebaseAppIfExists = (config = {}) => {
+  try {
+    return getApp();
+  } catch (error) {
+    return initializeApp(config);
+  }
+};
 
-export default app;
+export const app = startFirebaseAppIfExists(firebaseConfig);
+export const auth = getAuth(app);
