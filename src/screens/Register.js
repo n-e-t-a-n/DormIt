@@ -10,7 +10,7 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = async () => {
+  const handleRegister = async () => {
     await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -33,7 +33,7 @@ export default function Login({ navigation }) {
         secureTextEntry
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Sign In" onPress={handleSignIn} />
+      <Button title="Sign In" onPress={handleRegister} />
       <Button title="Cancel" onPress={() => navigation.pop(1)} />
     </View>
   );
