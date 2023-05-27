@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { auth } from '../../config/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, 
+         View, 
+         TextInput, 
+         Button } from 'react-native';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');

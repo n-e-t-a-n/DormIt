@@ -1,5 +1,5 @@
 import React from 'react';
-import getAuthenticatedUser from './src/utils/hooks/getAuthenticatedUser';
+import getAuthenticatedUser from './src/utils/getAuthenticatedUser';
 import { Auth, User } from './src/stacks';
 
 function App() {
