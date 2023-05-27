@@ -4,14 +4,19 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { StyleSheet, 
          View, 
          TextInput, 
-         Button } from 'react-native';
+         Button,
+         ToastAndroid } from 'react-native';
 
 export default function Login({ navigation }) {
+  const createToast = (message) => {
+    ToastAndroid.show(message, ToastAndroid.SHORT)
+  };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async () => {
-    await createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       navigation.pop(1);
