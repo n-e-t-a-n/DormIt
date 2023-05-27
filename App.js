@@ -4,11 +4,9 @@ import { Auth, User } from './src/stacks';
 import { NavigationContainer } from '@react-navigation/native';
 
 function App() {
-  const isLoggedIn = getUser();
-
   return (
     <NavigationContainer>
-      {isLoggedIn ? <User /> : <Auth />}
+        <Auth />
     </NavigationContainer>
   );
 };
