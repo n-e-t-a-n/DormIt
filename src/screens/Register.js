@@ -14,8 +14,7 @@ export default function Login({ navigation }) {
 
   const handleRegister = async () => {
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
+    .then(() => {
       navigation.goBack();
       createToastShort("Account created successfully!");
     })
