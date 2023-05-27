@@ -21,8 +21,8 @@ export default function Home({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-      <Text>{getUser().email}</Text>
+    <View style={homeStyles.container}>
+      <Text style={homeStyles.email}>{getUser().email}</Text>
       <StatusBar style="auto" />
 
       <Pressable style={[homeStyles.button, homeStyles.logoutButton]} onPress={handleLogout}> 
@@ -31,12 +31,3 @@ export default function Home({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

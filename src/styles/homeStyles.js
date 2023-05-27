@@ -25,9 +25,15 @@ export default StyleSheet.create({
         elevation: 3,
     },
     logoutButton : {
-        marginBottom: 5,
+        marginTop: 3,
         backgroundColor: '#000000',
         marginBottom: 3,
+    },
+    email: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
     },
     text: {
         fontSize: 16,
