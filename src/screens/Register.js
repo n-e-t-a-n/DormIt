@@ -8,6 +8,18 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSignIn = async () => {
+    await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      navigation.pop(1);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  };
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -19,7 +31,7 @@ export default function Login({ navigation }) {
         secureTextEntry
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Sign In" onPress={() => {}} />
+      <Button title="Sign In" onPress={handleSignIn} />
       <Button title="Cancel" onPress={() => navigation.pop(1)} />
     </View>
   );
