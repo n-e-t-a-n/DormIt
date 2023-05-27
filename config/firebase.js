@@ -1,21 +1,14 @@
 import { initializeApp, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { FIREBASE_API_KEY,
-         FIREBASE_AUTH_DOMAIN,
-         FIREBASE_PROJECT_ID,
-         FIREBASE_STORAGE_BUCKET,
-         FIREBASE_MESSAGING_SENDER_ID,
-         FIREBASE_APP_ID,
-         FIREBASE_MEASUREMENT_ID } from "@env";
 
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
-  authDomain: FIREBASE_AUTH_DOMAIN,
-  projectId: FIREBASE_PROJECT_ID,
-  storageBucket: FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
-  appId: FIREBASE_APP_ID,
-  measurementId: FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyC9A3bcS7EcAYUggeew1YvNk-wCNnu5A3I",
+  authDomain: "dormit-a2649.firebaseapp.com",
+  projectId: "dormit-a2649",
+  storageBucket: "dormit-a2649.appspot.com",
+  messagingSenderId: "823056166239",
+  appId: "1:823056166239:web:cb193e32e0901eeed3daea",
+  measurementId: "G-W15NPVRFCV"
 };
 
 const startFirebaseAppIfExists = (config = {}) => {
