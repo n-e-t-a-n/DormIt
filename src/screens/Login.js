@@ -6,7 +6,7 @@ import { View,
          TextInput, 
          Pressable } from 'react-native';
 import { loginStyles } from '../styles';
-import { createToastShort } from '../utils';
+import { getUser, createToastShort } from '../utils';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -16,6 +16,7 @@ export default function Login({ navigation }) {
     signInWithEmailAndPassword(auth, email, password)
     .then(() => {
       createToastShort("Successfully logged in.");
+      navigation.navigate('UserStack', { screen:'Home' });
     })
     .catch((error) => {
       let warningMessage = error.code

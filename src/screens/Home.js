@@ -9,21 +9,14 @@ import { homeStyles } from '../styles';
 import { createToastShort } from '../utils';
 import { getAuth, signOut } from 'firebase/auth';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
       createToastShort("You've logged out.");
+      navigation.goBack();
     }).catch((error) => {
-      let warningMessage = error.code
-                           .replace('auth/', '')
-                           .replace(/-/g, ' ');
-
-      createToastShort(warningMessage
-                        .charAt(0)
-                        .toUpperCase() + 
-                        warningMessage.slice(1) +
-                        '.');
+      createToastShort(error.code);
     });
   }
 
