@@ -3,13 +3,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Login, Register } from '../screens';
 
-const Stack = createStackNavigator();
+const AuthStack = createStackNavigator();
 
 export default function Auth() {
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
-    </Stack.Navigator>
+    <AuthStack.Navigator initialRouteName="Login">
+      <AuthStack.Screen name="Login" component={Login} />
+      <AuthStack.Screen name="Register" component={Register} />
+    </AuthStack.Navigator>
   );
 }

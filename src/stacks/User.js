@@ -3,12 +3,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '../screens';
 
-const Stack = createStackNavigator();
+const UserStack = createStackNavigator();
 
 export default function User() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-    </Stack.Navigator>
+    <UserStack.Navigator>
+      <UserStack.Screen name="Home" component={Home} />
+    </UserStack.Navigator>
   );
 }
