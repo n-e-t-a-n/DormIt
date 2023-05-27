@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { auth } from '../../config/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { StyleSheet, 
          View, 
          TextInput, 
          Button } from 'react-native';
 
 export default function Login({ navigation }) {
-  const handleSignIn = async () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
+  const handleSignIn = async () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
   };
 
   return (
     <View style={styles.container}>
       <TextInput
         placeholder="Email"
-        onChangeText={() => {}}
+        onChangeText={(text) => {setEmail(text)}}
       />
       <TextInput
         placeholder="Password"
         secureTextEntry
-        onChangeText={() => {}}
+        onChangeText={(text) => {setPassword(text)}}
       />
       <Button title="Login" onPress={handleSignIn} />
       <Button title="Register" onPress={() => navigation.navigate("Register")} />
