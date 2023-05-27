@@ -23,17 +23,15 @@ export default function Login({ navigation }) {
       createToast("Account created successfully!");
     })
     .catch((error) => {
-      let errorCode = error.code
+      let warningMessage = error.code
                       .replace('auth/', '')
                       .replace(/-/g, ' ');
-      
-      errorCode = errorCode
+
+      createToast(warningMessage
                   .charAt(0)
                   .toUpperCase() + 
-                  errorCode.slice(1) +
-                  '.';
-
-      createToast(errorCode);
+                  warningMessage.slice(1) +
+                  '.');
     });
   };
 
