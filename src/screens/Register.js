@@ -4,15 +4,11 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { View, 
          Text, 
          TextInput, 
-         Pressable,
-         ToastAndroid } from 'react-native';
+         Pressable } from 'react-native';
 import { registerStyles } from '../styles';
+import { createToastShort } from '../utils';
 
 export default function Login({ navigation }) {
-  const createToast = (message) => {
-    ToastAndroid.show(message, ToastAndroid.SHORT)
-  };
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,14 +17,14 @@ export default function Login({ navigation }) {
     .then((userCredential) => {
       const user = userCredential.user;
       navigation.goBack();
-      createToast("Account created successfully!");
+      createToastShort("Account created successfully!");
     })
     .catch((error) => {
       let warningMessage = error.code
                       .replace('auth/', '')
                       .replace(/-/g, ' ');
 
-      createToast(warningMessage
+      createToastShort(warningMessage
                   .charAt(0)
                   .toUpperCase() + 
                   warningMessage.slice(1) +

@@ -1,9 +1,9 @@
 import React from 'react';
-import getAuthenticatedUser from './src/utils/getAuthenticatedUser';
+import { getUser } from './src/utils';
 import { Auth, User } from './src/stacks';
 
 function App() {
-  const isLoggedIn = getAuthenticatedUser();
+  const isLoggedIn = getUser();
 
   return (
     isLoggedIn ? <User /> : <Auth />
