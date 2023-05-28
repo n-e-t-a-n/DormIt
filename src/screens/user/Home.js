@@ -1,11 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { getUser } from '../utils';
+import { getUser } from '../../utils';
 import { Text, 
          View,
          Pressable } from 'react-native';
-import { homeStyles } from '../styles';
-import { createToastShort } from '../utils';
+import { homeStyles } from '../../styles';
+import { createToastShort } from '../../utils';
 import { getAuth, signOut } from 'firebase/auth';
 
 export default function Home({ navigation }) {

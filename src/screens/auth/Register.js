@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { auth } from '../../config/firebase';
+import { auth } from '../../../config/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { View, 
          Text, 
          TextInput, 
          Pressable } from 'react-native';
-import { registerStyles } from '../styles';
-import { createToastShort } from '../utils';
+import { registerStyles } from '../../styles';
+import { createToastShort } from '../../utils';
 
 export default function Register({ navigation }) {
   const [email, setEmail] = useState('');
