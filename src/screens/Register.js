@@ -8,7 +8,7 @@ import { View,
 import { registerStyles } from '../styles';
 import { createToastShort } from '../utils';
 
-export default function Login({ navigation }) {
+export default function Register({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
