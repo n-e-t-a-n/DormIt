@@ -9,6 +9,12 @@ import { createToastShort } from '../utils';
 import { getAuth, signOut } from 'firebase/auth';
 
 export default function Home({ navigation }) {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: null,
+    });
+  }, [navigation]);
+
   const handleLogout = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
