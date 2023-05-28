@@ -1,8 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { getUser } from '../utils';
-import { StyleSheet, 
-         Text, 
+import { Text, 
          View,
          Pressable } from 'react-native';
 import { homeStyles } from '../styles';

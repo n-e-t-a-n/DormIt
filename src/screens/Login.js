@@ -6,7 +6,7 @@ import { View,
          TextInput, 
          Pressable } from 'react-native';
 import { loginStyles } from '../styles';
-import { getUser, createToastShort } from '../utils';
+import { createToastShort } from '../utils';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
