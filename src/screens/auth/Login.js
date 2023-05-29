@@ -5,7 +5,7 @@ import { View,
          Text, 
          TextInput, 
          Pressable } from 'react-native';
-import { loginStyles } from '../../styles';
+import { loginStyles } from '../../styles/auth';
 import { createToastShort } from '../../utils';
 
 export default function Login({ navigation }) {

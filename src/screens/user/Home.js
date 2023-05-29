@@ -5,7 +5,7 @@ import { getUser } from '../../utils';
 import { Text, 
          View,
          Pressable } from 'react-native';
-import { homeStyles } from '../../styles';
+import { homeStyles } from '../../styles/user';
 import { createToastShort } from '../../utils';
 import { signOut } from 'firebase/auth';
 
