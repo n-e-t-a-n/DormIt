@@ -1,4 +1,5 @@
 import React from 'react';
+import { auth } from '../../../config/firebase';
 import { StatusBar } from 'expo-status-bar';
 import { getUser } from '../../utils';
 import { Text, 
@@ -6,7 +7,7 @@ import { Text,
          Pressable } from 'react-native';
 import { homeStyles } from '../../styles';
 import { createToastShort } from '../../utils';
-import { getAuth, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 
 export default function Home({ navigation }) {
   React.useLayoutEffect(() => {
@@ -16,7 +17,6 @@ export default function Home({ navigation }) {
   }, [navigation]);
 
   const handleLogout = () => {
-    const auth = getAuth();
     signOut(auth).then(() => {
       createToastShort("You've logged out.");
       navigation.goBack();
