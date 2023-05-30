@@ -1,7 +1,7 @@
 import React from 'react';
 import { auth } from '../../../config/firebase';
 import { StatusBar } from 'expo-status-bar';
-import { getUser, createToastShort } from '../../utils/helpers';
+import { createToastShort } from '../../utils/helpers';
 import { Text, 
          View,
          Pressable } from 'react-native';
@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={homeStyles.container}>
-      <Text style={homeStyles.email}>{getUser().email}</Text>
+      <Text style={homeStyles.email}>{auth.currentUser?.email}</Text>
       <StatusBar style="auto" />
 
       <Pressable style={[homeStyles.button, homeStyles.logoutButton]} onPress={handleLogout}> 
