@@ -19,14 +19,14 @@ export default function Login({ navigation }) {
       navigation.navigate('UserStack', { screen:'Home' });
     })
     .catch((error) => {
-      let warningMessage = error.code
-                           .replace('auth/', '')
-                           .replace(/-/g, ' ');
+      let warningMessage = error?.code
+                           ?.replace('auth/', '')
+                           ?.replace(/-/g, ' ');
 
       createToastShort(warningMessage
-                       .charAt(0)
-                       .toUpperCase() + 
-                       warningMessage.slice(1) +
+                       ?.charAt(0)
+                       ?.toUpperCase() + 
+                       warningMessage?.slice(1) +
                        '.');
     });
   };
