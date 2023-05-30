@@ -19,14 +19,14 @@ export default function Register({ navigation }) {
       createToastShort("Account created successfully!");
     })
     .catch((error) => {
-      let warningMessage = error.code
-                      .replace('auth/', '')
-                      .replace(/-/g, ' ');
+      let warningMessage = error?.code
+                      ?.replace('auth/', '')
+                      ?.replace(/-/g, ' ');
 
       createToastShort(warningMessage
-                  .charAt(0)
-                  .toUpperCase() + 
-                  warningMessage.slice(1) +
+                  ?.charAt(0)
+                  ?.toUpperCase() + 
+                  warningMessage?.slice(1) +
                   '.');
     });
   };

@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={homeStyles.container}>
-      <Text style={homeStyles.email}>{auth.currentUser?.email} | User</Text>
+      <Text style={homeStyles.email}>{auth.currentUser?.email} | Owner</Text>
       <StatusBar style="auto" />
 
       <Pressable style={[homeStyles.button, homeStyles.logoutButton]} onPress={handleLogout}> 
