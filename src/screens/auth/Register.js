@@ -5,8 +5,8 @@ import { View,
          Text, 
          TextInput, 
          Pressable } from 'react-native';
-import { registerStyles } from '../../styles';
-import { createToastShort } from '../../utils';
+import { registerStyles } from '../../styles/auth';
+import { createToastShort } from '../../utils/helpers';
 
 export default function Register({ navigation }) {
   const [email, setEmail] = useState('');
@@ -19,14 +19,14 @@ export default function Register({ navigation }) {
       createToastShort("Account created successfully!");
     })
     .catch((error) => {
-      let warningMessage = error.code
-                      .replace('auth/', '')
-                      .replace(/-/g, ' ');
+      let warningMessage = error?.code
+                      ?.replace('auth/', '')
+                      ?.replace(/-/g, ' ');
 
       createToastShort(warningMessage
-                  .charAt(0)
-                  .toUpperCase() + 
-                  warningMessage.slice(1) +
+                  ?.charAt(0)
+                  ?.toUpperCase() + 
+                  warningMessage?.slice(1) +
                   '.');
     });
   };

@@ -1,14 +1,16 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { getUser } from '../utils';
+import { Home } from '../screens/admin';
+import { auth } from '../../config/firebase';
 
 const AdminStack = createStackNavigator();
 
 export default function Admin() {
-  if (!getUser()) navigation.goBack();
+  if (!auth.currentUser) navigation.goBack();
 
   return (
     <AdminStack.Navigator>
+      <AdminStack.Screen name="Home" component={Home} />
     </AdminStack.Navigator>
   );
 }

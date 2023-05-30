@@ -5,28 +5,32 @@ import { View,
          Text, 
          TextInput, 
          Pressable } from 'react-native';
-import { loginStyles } from '../../styles';
-import { createToastShort } from '../../utils';
+import { loginStyles } from '../../styles/auth';
+import { createToastShort } from '../../utils/helpers';
+import { getCurrentUser } from '../../utils/database';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     signInWithEmailAndPassword(auth, email?.trim(), password)
-    .then(() => {
+    .then(async () => {
       createToastShort("Successfully logged in.");
-      navigation.navigate('UserStack', { screen:'Home' });
+
+      const user = await getCurrentUser();
+
+      navigation.navigate(user?.role + 'Stack', { screen:'Home' });
     })
     .catch((error) => {
-      let warningMessage = error.code
-                           .replace('auth/', '')
-                           .replace(/-/g, ' ');
+      let warningMessage = error?.code
+                           ?.replace('auth/', '')
+                           ?.replace(/-/g, ' ');
 
       createToastShort(warningMessage
-                       .charAt(0)
-                       .toUpperCase() + 
-                       warningMessage.slice(1) +
+                       ?.charAt(0)
+                       ?.toUpperCase() + 
+                       warningMessage?.slice(1) +
                        '.');
     });
   };
