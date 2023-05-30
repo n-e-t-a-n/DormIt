@@ -7,16 +7,20 @@ import { View,
          Pressable } from 'react-native';
 import { loginStyles } from '../../styles/auth';
 import { createToastShort } from '../../utils/helpers';
+import { getCurrentUser } from '../../utils/database';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     signInWithEmailAndPassword(auth, email?.trim(), password)
-    .then(() => {
+    .then(async () => {
       createToastShort("Successfully logged in.");
-      navigation.navigate('UserStack', { screen:'Home' });
+
+      const user = await getCurrentUser();
+
+      navigation.navigate(user?.role + 'Stack', { screen:'Home' });
     })
     .catch((error) => {
       let warningMessage = error?.code
