@@ -1,7 +1,7 @@
-export { default as getUser } from './getUser';
+export { default as getCurrentUser } from './getCurrentUser';
 /*
     Input: Nothing.
-    Output: Returns an Object with current user's data, or null if it doesn't exist, console-logged error if caught.
+    Output: Returns an Object with current user's data, or null if it doesn't exist.
 
     E.G.
     const user = getUser();
@@ -14,7 +14,7 @@ export { default as getUser } from './getUser';
 export { default as storeUser } from './storeUser';
 /*
     Input: Object with data of user to-be-stored, String representing role (user || owner).
-    Output: Stores user data in firestore, with { email } as document-id, console-logged error if caught.
+    Output: Stores user data in firestore if
     
     E.G. 
     const user = {
