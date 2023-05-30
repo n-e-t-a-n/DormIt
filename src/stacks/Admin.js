@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { auth } from 'firebase/auth';
+import { auth } from '../../config/firebase';
 
 const AdminStack = createStackNavigator();
 
