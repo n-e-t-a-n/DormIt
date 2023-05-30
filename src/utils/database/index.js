@@ -13,7 +13,7 @@ export { default as getCurrentUser } from './getCurrentUser';
 
 export { default as storeUser } from './storeUser';
 /*
-    Input: Object with data of user to-be-stored, String representing role (user || owner).
+    Input: Object with data of user to-be-stored, String representing role (User || Owner).
     Output: Stores user data in firestore if
     
     E.G. 
@@ -22,7 +22,7 @@ export { default as storeUser } from './storeUser';
         gender: "female",
         age: 22
     };
-    storeUser(user, "owner");
+    storeUser(user, "Owner");
 
     Note: This is an asynchronous function. Do not forget to await it.
 */
