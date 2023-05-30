@@ -1,12 +1,11 @@
 import React from 'react';
 import { auth } from '../../../config/firebase';
 import { StatusBar } from 'expo-status-bar';
-import { getUser } from '../../utils';
+import { getUser, createToastShort } from '../../utils/helpers';
 import { Text, 
          View,
          Pressable } from 'react-native';
 import { homeStyles } from '../../styles/user';
-import { createToastShort } from '../../utils';
 import { signOut } from 'firebase/auth';
 
 export default function Home({ navigation }) {

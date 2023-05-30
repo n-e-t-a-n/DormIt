@@ -6,7 +6,7 @@ import { View,
          TextInput, 
          Pressable } from 'react-native';
 import { registerStyles } from '../../styles/auth';
-import { createToastShort } from '../../utils';
+import { createToastShort } from '../../utils/helpers';
 
 export default function Register({ navigation }) {
   const [email, setEmail] = useState('');

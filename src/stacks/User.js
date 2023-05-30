@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { getUser } from '../utils';
+import { getUser } from '../utils/helpers';
 import { Home } from '../screens/user';
 
 const UserStack = createStackNavigator();
