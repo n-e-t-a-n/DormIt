@@ -1,41 +1,78 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import OwnerBottomTabNavigator from './bottom.js';
-
-const Tab = createBottomTabNavigator();
+import { db } from './../../../config/firebase';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+} from 'firebase/firestore';
 
 const DashboardScreen = () => {
-  // Placeholder data for listings
-  const listings = [
-    {
-      id: 1,
-      name: 'Listing 1',
-      address: '123 Main St',
-      availableUnits: 3,
-      reservationRequests: 2,
-    },
-    {
-      id: 2,
-      name: 'Listing 2',
-      address: '456 Elm St',
-      availableUnits: 2,
-      reservationRequests: 0,
-    },
-  ];
+  const [listings, setListings] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const listingsSnapshot = await getDocs(
+          query(
+            collection(db, 'listings'),
+            where('user_id', '==', 'test@owner.com')
+          )
+        );
+    
+        const listingsData = listingsSnapshot.docs.map(
+          (doc) => doc.data()
+        );
+        console.log(listingsData);
+    
+        const listingsWithRequests = await Promise.all(
+          listingsData.map(async (listing) => {
+            // Check if the listing has a `listing_id` field before querying reservations
+            if (listing.listing_id) {
+              const reservationsSnapshot = await getDocs(
+                query(
+                  collection(db, 'reservations'),
+                  where('listing_id', '==', listing.listing_id)
+                )
+              );
+    
+              const reservationRequests = reservationsSnapshot.size;
+    
+              return { ...listing, reservationRequests };
+            } else {
+              // Handle case when the listing does not have a `listing_id` field
+              console.error(
+                'Listing does not have a `listing_id` field:',
+                listing
+              );
+              return listing;
+            }
+          })
+        );
+    
+        setListings(listingsWithRequests);
+      } catch (error) {
+        console.error('Error fetching listings:', error);
+      }
+    };
+
+    fetchListings();
+  }, []);
 
   return (
     <View style={styles.container}>
-      {listings.map((listing) => (
-        <View key={listing.id} style={styles.listingContainer}>
-          <Text style={styles.listingName}>{listing.name}</Text>
-          <Text>{listing.address}</Text>
-          <Text>Available Units: {listing.availableUnits}</Text>
-          <Text>Reservation Requests: {listing.reservationRequests}</Text>
-        </View>
-      ))}
-      <OwnerBottomTabNavigator />
-    </View>
+    {listings.map((listing) => (
+      <View key={listing.listing_id} style={styles.listingContainer}>
+        <Text style={styles.listingName}>{listing.name}</Text>
+        <Text>{listing.address}</Text>
+        <Text>Available Units: {listing.available_slots}</Text>
+        <Text>
+          Reservation Requests: {listing.reservationRequests}
+        </Text>
+      </View>
+    ))}
+  </View>
   );
 };
 
@@ -54,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DashboardPage;
+export default DashboardScreen;

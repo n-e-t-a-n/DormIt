@@ -1,12 +1,53 @@
-import React from 'react';
+import * as React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import { auth } from '../../../config/firebase';
 import { StatusBar } from 'expo-status-bar';
 import { createToastShort } from '../../utils/helpers';
 import { Text, 
-         View,
-         Pressable } from 'react-native';
+        View,
+        Pressable } from 'react-native';
 import { homeStyles } from '../../styles/user';
 import { signOut } from 'firebase/auth';
+
+import { default as DashboardScreen } from './Dashboard';
+import { default as AddListingScreen } from './AddListing';
+import { default as ReservationApprovalPage } from './Reservation';
+
+//Bottom Tab Stuff
+const Tab = createBottomTabNavigator();
+
+function Dashboard() {
+  const navigation = useNavigation();
+
+  return (
+    <View>
+      <DashboardScreen navigation={navigation} />
+    </View>
+  );
+}
+
+function AddListing() {
+  const navigation = useNavigation();
+
+  return (
+    <View>
+      <AddListingScreen navigation={navigation} />
+    </View>
+  );
+}
+
+function Reservations() {
+  const navigation = useNavigation();
+
+  return (
+    <View>
+      <ReservationApprovalPage navigation={navigation} />
+    </View>
+  );
+}
+
 
 export default function Home({ navigation }) {
   React.useLayoutEffect(() => {
@@ -29,6 +70,12 @@ export default function Home({ navigation }) {
       <Text style={homeStyles.email}>{auth.currentUser?.email} | Owner</Text>
       <StatusBar style="auto" />
 
+      
+      <Tab.Navigator>
+        <Tab.Screen name="Dashboard" component={Dashboard} />
+        <Tab.Screen name="Add Listing" component={AddListing} />
+        <Tab.Screen name="Reservations" component={Reservations} />
+      </Tab.Navigator>
       <Pressable style={[homeStyles.button, homeStyles.logoutButton]} onPress={handleLogout}> 
         <Text style={homeStyles.text}>Logout</Text>
       </Pressable>

@@ -1,6 +1,7 @@
 import { initializeApp, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import firebase from 'firebase/compat/app';
 
 const firebaseConfig = {
   apiKey: "AIzaSyC9A3bcS7EcAYUggeew1YvNk-wCNnu5A3I",
@@ -12,14 +13,22 @@ const firebaseConfig = {
   measurementId: "G-W15NPVRFCV"
 };
 
-const startFirebaseAppIfExists = (config = {}) => {
+const app = startFirebaseAppIfExists(firebaseConfig);
+
+function startFirebaseAppIfExists(config = {}) {
   try {
     return getApp();
   } catch (error) {
     return initializeApp(config);
   }
-};
+}
 
-export const app = startFirebaseAppIfExists(firebaseConfig);
+// Initialize Firebase
+if (!firebase.apps.length) {
+  initializeApp(firebaseConfig, 'DormIt'); // Add your app name as the second parameter
+}
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export { firebaseConfig };
+export default app;
