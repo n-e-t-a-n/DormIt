@@ -1,4 +1,4 @@
-export { default as getCurrentUser } from './getCurrentUser';
+export { default as getCurrentUser } from "./getCurrentUser";
 /*
     Input: Nothing.
     Output: Returns an Object with current user's data, or null if it doesn't exist.
@@ -11,7 +11,7 @@ export { default as getCurrentUser } from './getCurrentUser';
     Note: This is an asynchronous function. Do not forget to await it.
 */
 
-export { default as storeUser } from './storeUser';
+export { default as storeUser } from "./storeUser";
 /*
     Input: Object with data of user to-be-stored, String representing role (User || Owner).
     Output: Stores user data in firestore if
