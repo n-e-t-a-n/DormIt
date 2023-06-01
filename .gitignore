@@ -21,3 +21,7 @@ web-build/
 
 # VS Code generated files
 .vscode/
+
+# Misc
+
+.husky/
