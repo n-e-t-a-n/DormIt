@@ -1,0 +1,45 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "airbnb/hooks", "@react-native-community", "prettier"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "indent": ["error", 2],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "eqeqeq": "error",
+    "prefer-arrow-callback": "error",
+    "no-var": "error",
+    "no-unused-vars": ["error", { "args": "after-used", "argsIgnorePattern": "^_" }],
+    "no-useless-catch": "error",
+    "no-unneeded-ternary": "error",
+    "no-return-await": "error",
+    "no-param-reassign": "error",
+    "no-new-wrappers": "error",
+    "no-eval": "error",
+    "no-extra-semi": "error",
+    "no-nested-ternary": "error",
+    "no-await-in-loop": "error",
+    "no-useless-return": "warn",
+    "no-alert": "warn",
+    "object-curly-newline": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react/style-prop-object": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off"
+  }
+}

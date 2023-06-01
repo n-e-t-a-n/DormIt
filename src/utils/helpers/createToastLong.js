@@ -1,7 +1,7 @@
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid } from "react-native";
 
 const createToastLong = (message) => {
-    ToastAndroid.show(message, ToastAndroid.LONG);
+  ToastAndroid.show(message, ToastAndroid.LONG);
 };
 
 export default createToastLong;
