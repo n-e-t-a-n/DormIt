@@ -13,9 +13,10 @@
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --fix --ext .js,.jsx",
     "format": "pretty-quick --staged",
-    "format:check": "prettier --check ./src"
+    "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@expo/metro-config": "^0.7.1",
     "@expo/webpack-config": "^18.0.1",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@react-native-community/eslint-config": "^3.2.0",
     "eslint": "^8.41.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.8.0",
