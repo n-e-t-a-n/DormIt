@@ -1,5 +1,5 @@
+import { auth, db } from "@config/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { db, auth } from "@config/firebase";
 
 export default async function getCurrentUser() {
   try {
@@ -9,6 +9,6 @@ export default async function getCurrentUser() {
 
     return user.exists() ? user.data() : null;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }

@@ -10,6 +10,6 @@ export default async function storeOwner({ email }, roleType) {
       gender: "male",
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }

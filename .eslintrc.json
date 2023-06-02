@@ -4,7 +4,14 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "airbnb/hooks", "@react-native-community", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "@react-native-community",
+    "prettier"
+  ],
   "overrides": [],
   "parserOptions": {
     "ecmaFeatures": {
@@ -33,6 +40,7 @@
     "no-await-in-loop": "error",
     "no-useless-return": "warn",
     "no-alert": "warn",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "object-curly-newline": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",

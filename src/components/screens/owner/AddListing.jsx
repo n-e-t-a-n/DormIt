@@ -25,14 +25,12 @@ function AddListingScreen() {
       };
 
       const docRef = await addDoc(collection(db, "listings"), formattedListingData);
-      console.log(formattedListingData);
       const listingId = docRef.id; // Get the auto-generated ID from Firestore
       formattedListingData.listing_id = listingId; // Assign the listing_id field
 
       // Update the document with the generated listing_id
       await updateDoc(docRef, { listing_id: listingId });
-      console.log(listingId);
-      console.log("Listing added successfully with ID: ", listingId);
+
       setListingData({
         address: "",
         available_slots: "",

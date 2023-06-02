@@ -16,7 +16,6 @@ function DashboardScreen() {
         );
 
         const listingsData = listingsSnapshot.docs.map((doc) => doc.data());
-        console.log(listingsData);
 
         const listingsWithRequests = await Promise.all(
           listingsData.map(async (listing) => {

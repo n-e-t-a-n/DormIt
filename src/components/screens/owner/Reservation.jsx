@@ -60,7 +60,6 @@ function ReservationApprovalPage() {
 
   const handleAcceptReservation = async (reservation_id) => {
     try {
-      console.log(reservation_id);
       const reservationQuery = db.collection("reservations").where("reservation_id", "==", reservation_id);
 
       // Fetch the matching document(s) using the query
@@ -72,7 +71,6 @@ function ReservationApprovalPage() {
 
         // Update the status of the reservation to 'accepted'
         await reservationRef.update({ status: "accepted" });
-        console.log(`Reservation with ID ${doc.id} accepted.`);
 
         // Fetch the listing document based on the listing_id field
         const listingId = doc.data().listing_id;
@@ -89,13 +87,9 @@ function ReservationApprovalPage() {
           // Ensure availableSlots is greater than 0 before decrementing
           if (availableSlots > 0) {
             await listingRef.update({ available_slots: availableSlots - 1 });
-            console.log(`Listing with ID ${listingDoc.id} updated. Available slots decreased by 1.`);
-          } else {
-            console.log(`Listing with ID ${listingDoc.id} has no available slots.`);
           }
-        } else {
-          console.log(`Listing with ID ${listingId} not found.`);
         }
+
         setRefresh(!refresh); // Trigger refresh by toggling the refresh state variable
       });
     } catch (error) {
@@ -105,7 +99,6 @@ function ReservationApprovalPage() {
 
   const handleRejectReservation = async (reservation_id) => {
     try {
-      console.log(reservation_id);
       const reservationQuery = db.collection("reservations").where("reservation_id", "==", reservation_id);
 
       // Fetch the matching document(s) using the query
@@ -117,7 +110,6 @@ function ReservationApprovalPage() {
 
         // Update the status of the reservation to 'rejected'
         reservationRef.update({ status: "rejected" });
-        console.log(`Reservation with ID ${doc.id} rejected.`);
 
         setRefresh(!refresh); // Trigger refresh by toggling the refresh state variable
       });
