@@ -1,6 +1,6 @@
-import { initializeApp, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp, getApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC9A3bcS7EcAYUggeew1YvNk-wCNnu5A3I",
@@ -9,7 +9,7 @@ const firebaseConfig = {
   storageBucket: "dormit-a2649.appspot.com",
   messagingSenderId: "823056166239",
   appId: "1:823056166239:web:cb193e32e0901eeed3daea",
-  measurementId: "G-W15NPVRFCV"
+  measurementId: "G-W15NPVRFCV",
 };
 
 const startFirebaseAppIfExists = (config = {}) => {
