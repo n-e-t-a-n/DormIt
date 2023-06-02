@@ -1,3 +1,4 @@
+import type { FirebaseApp, FirebaseOptions } from "firebase/app";
 import { getApp, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -12,7 +13,7 @@ const firebaseConfig = {
   measurementId: "G-W15NPVRFCV",
 };
 
-function startFirebaseAppIfExists(config = {}) {
+function startFirebaseAppIfExists(config: FirebaseOptions = {}): FirebaseApp {
   try {
     return getApp();
   } catch (error) {

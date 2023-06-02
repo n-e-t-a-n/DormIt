@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
+import type { DocumentData } from "firebase/firestore";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -7,7 +8,7 @@ import { db } from "@config/firebase";
 import { font } from "@theme";
 
 function DashboardScreen() {
-  const [listings, setListings] = React.useState([]);
+  const [listings, setListings] = useState<DocumentData[]>([]);
 
   React.useEffect(() => {
     const fetchListings = async () => {
@@ -37,6 +38,7 @@ function DashboardScreen() {
           })
         );
 
+        // Data here should be modeled
         setListings(listingsWithRequests);
       } catch (error) {
         console.error("Error fetching listings:", error);

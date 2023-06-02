@@ -3,15 +3,17 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 
+import type { AuthStackScreenProps } from "@@types/navigation/Auth";
+import type { UserStackParamList, UserTabParamList } from "@@types/navigation/User";
 import { DormDetails, Home, Search, UserProfile } from "@components/screens/user";
 import { auth } from "@config/firebase";
 
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator<UserTabParamList>();
+const Stack = createStackNavigator<UserStackParamList>();
 
 function TabScreens() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="UserProfile" component={UserProfile} options={{ title: "User Profile" }} />
@@ -19,7 +21,7 @@ function TabScreens() {
   );
 }
 
-export default function User({ navigation }) {
+export default function User({ navigation }: AuthStackScreenProps<"UserStack">) {
   if (!auth.currentUser) navigation.goBack();
 
   return (

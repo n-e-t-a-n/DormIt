@@ -7,7 +7,9 @@ import Admin from "@navigation/Admin";
 import Owner from "@navigation/Owner";
 import User from "@navigation/User";
 
-const AuthStack = createStackNavigator();
+import type { AuthStackParamList } from "@@types/navigation/Auth";
+
+const AuthStack = createStackNavigator<AuthStackParamList>();
 
 export default function Auth() {
   return (

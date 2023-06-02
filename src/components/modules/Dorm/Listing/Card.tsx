@@ -3,7 +3,15 @@ import React from "react";
 import { color, font } from "@theme";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
-function Card({ onPress, name, location, image, width }) {
+interface CardProps {
+  name?: string;
+  location?: string;
+  image?: string[] | string;
+  width?: number;
+  onPress?: () => void;
+}
+
+function Card({ onPress, name, location, image, width }: CardProps) {
   return (
     <Pressable onPress={onPress}>
       <View style={{ ...styles.cardView, width }}>

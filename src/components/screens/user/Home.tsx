@@ -3,12 +3,15 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Dimensions, FlatList, StyleSheet, View } from "react-native";
 
+import type { Dorm } from "@@types/models";
+import type { UserTabScreenProps } from "@@types/navigation/User";
 import { Card as DormCard } from "@components/modules/Dorm/Listing";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 // MOCK DATA FOR TESTING
-const dorms = [
+
+const dorms: Dorm[] = [
   {
     dormName: "Dorm1",
     dormOwner: "DO1",
@@ -38,10 +41,13 @@ const dorms = [
 ];
 
 function Home() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<UserTabScreenProps<"Home">["navigation"]>();
 
-  const handleDormPress = (dormId) => {
-    navigation.navigate("DormDetails", { dorm: dorms.find((d) => d.id === dormId) });
+  const handleDormPress = (dormId: number) => {
+    const dorm = dorms.find((d) => d.id === dormId);
+    if (!dorm) return;
+
+    navigation.navigate("DormDetails", { dorm });
   };
 
   return (
@@ -49,7 +55,7 @@ function Home() {
       <FlatList
         style={styles.list}
         data={dorms}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <DormCard
             width={SCREEN_WIDTH * 0.95}

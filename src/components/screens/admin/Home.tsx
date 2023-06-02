@@ -4,15 +4,14 @@ import { StatusBar } from "expo-status-bar";
 import { signOut } from "firebase/auth";
 import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 
+import type { AdminStackScreenProps } from "@@types/navigation/Admin";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color, font } from "@theme";
 
-function Home({ navigation }) {
+function Home({ navigation }: AdminStackScreenProps<"Home">) {
   React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: null,
-    });
+    navigation.setOptions({ headerLeft: undefined });
   }, [navigation]);
 
   const handleLogout = () => {

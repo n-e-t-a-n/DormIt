@@ -3,14 +3,15 @@ import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 
+import type { AuthStackScreenProps } from "@@types/navigation/Auth";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { getAuthUser } from "@services/user";
 import { color } from "@theme";
 
-function Login({ navigation }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Login({ navigation }: AuthStackScreenProps<"Login">) {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email?.trim(), password)
@@ -18,8 +19,19 @@ function Login({ navigation }) {
         ToastAndroid.show("Successfully logged in.", ToastAndroid.SHORT);
 
         const user = await getAuthUser();
-
-        navigation.navigate(`${user?.role}Stack`, { screen: "Home" });
+        if (user) {
+          switch (user.role) {
+            case "User":
+              navigation.navigate("UserStack", { screen: "TabScreens" });
+              break;
+            case "Owner":
+              navigation.navigate("OwnerStack", { screen: "TabScreens" });
+              break;
+            case "Admin":
+              navigation.navigate("AdminStack", { screen: "Home" });
+              break;
+          }
+        }
       })
       .catch((error) => {
         const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
