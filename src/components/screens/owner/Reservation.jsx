@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 import { db } from "@config/firebase"; // Import your Firebase configuration from firebase.js
+import { font } from "@theme";
 
 function ReservationApprovalPage() {
   const [reservations, setReservations] = useState([]);
@@ -150,8 +151,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   studentName: {
-    fontWeight: "bold",
-    fontSize: 16,
+    fontWeight: font.weight.BOLD,
+    fontSize: font.size.TEXT,
     marginBottom: 5,
   },
   buttonContainer: {

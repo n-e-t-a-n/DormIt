@@ -15,7 +15,6 @@ module.exports = (api) => {
             "@hooks": "./src/hooks",
             "@navigation": "./src/navigation",
             "@services": "./src/services",
-            "@styles": "./src/styles",
             "@theme": "./src/theme",
             "@utils": "./src/utils",
           },

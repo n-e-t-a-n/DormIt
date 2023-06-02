@@ -4,6 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { StyleSheet, Text, View } from "react-native";
 
 import { db } from "@config/firebase";
+import { font } from "@theme";
 
 function DashboardScreen() {
   const [listings, setListings] = React.useState([]);
@@ -68,8 +69,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   listingName: {
-    fontWeight: "bold",
-    fontSize: 16,
+    fontWeight: font.weight.BOLD,
+    fontSize: font.size.TEXT,
     marginBottom: 5,
   },
 });

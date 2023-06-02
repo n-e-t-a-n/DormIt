@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Pressable, Text, TextInput, ToastAndroid, View } from "react-native";
+import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 
+import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { getAuthUser } from "@services/user";
-import { loginStyles } from "@styles/auth";
+import { color } from "@theme";
 
 function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -31,33 +32,35 @@ function Login({ navigation }) {
   };
 
   return (
-    <View style={loginStyles.container}>
-      <TextInput
-        style={loginStyles.input}
-        placeholder="Email"
-        onChangeText={(text) => {
-          setEmail(text);
-        }}
-      />
+    <View style={styles.container}>
+      <TextInput style={styles.input} placeholder="Email" onChangeText={setEmail} />
+      <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={setPassword} />
 
-      <TextInput
-        style={loginStyles.input}
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={(text) => {
-          setPassword(text);
-        }}
-      />
-
-      <Pressable style={[loginStyles.button, loginStyles.loginButton]} onPress={handleLogin}>
-        <Text style={loginStyles.text}>Login</Text>
-      </Pressable>
-
-      <Pressable style={loginStyles.button} onPress={() => navigation.navigate("Register")}>
-        <Text style={loginStyles.text}>Register</Text>
-      </Pressable>
+      <Button label="Login" style={styles.loginButton} onPress={handleLogin} />
+      <Button label="Register" onPress={() => navigation.navigate("Register")} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: color.WHITE,
+    justifyContent: "center",
+    paddingHorizontal: 40,
+  },
+  input: {
+    height: 50,
+    width: "100%",
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: color.LIGHT_GRAY,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+  },
+  loginButton: {
+    marginBottom: 3,
+  },
+});
 
 export default Login;

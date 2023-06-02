@@ -1,10 +1,9 @@
 import React from "react";
 
 import { useNavigation } from "@react-navigation/native";
-import { Dimensions, FlatList, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, View } from "react-native";
 
 import { Card as DormCard } from "@components/modules/Dorm/Listing";
-import { homeStyles } from "@styles/user";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -48,7 +47,7 @@ function Home() {
   return (
     <View>
       <FlatList
-        style={homeStyles.list}
+        style={styles.list}
         data={dorms}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
@@ -64,5 +63,13 @@ function Home() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  list: {
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+});
 
 export default Home;

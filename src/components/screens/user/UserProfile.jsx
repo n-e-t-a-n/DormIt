@@ -1,10 +1,11 @@
 import React from "react";
 
 import { signOut } from "firebase/auth";
-import { Pressable, Text, ToastAndroid, View } from "react-native";
+import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 
+import { Button } from "@components/common";
 import { auth } from "@config/firebase";
-import { userProfileStyles } from "@styles/user";
+import { color } from "@theme";
 
 function UserProfile({ navigation }) {
   const handleLogout = () => {
@@ -19,15 +20,25 @@ function UserProfile({ navigation }) {
   };
 
   return (
-    <View style={userProfileStyles.container}>
+    <View style={styles.container}>
       <Text>Username: </Text>
       <Text>Email: {auth.currentUser?.email}</Text>
 
-      <Pressable style={[userProfileStyles.button, userProfileStyles.logoutButton]} onPress={handleLogout}>
-        <Text style={userProfileStyles.text}>Logout</Text>
-      </Pressable>
+      <Button label="Logout" style={styles.logoutButton} onPress={handleLogout} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: color.WHITE,
+    padding: 20,
+  },
+  logoutButton: {
+    marginTop: 3,
+    marginBottom: 3,
+  },
+});
 
 export default UserProfile;
