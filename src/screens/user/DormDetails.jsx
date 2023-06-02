@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { DormData } from '../../utils/components/DormData';
-import { dormDetailsStyles } from '../../styles/user';
+import React from "react";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { dormDetailsStyles } from "../../styles/user";
+import { DormData } from "../../utils/components/DormData";
 
 export default function DormDetails({ route }) {
   const { dormId } = route.params;

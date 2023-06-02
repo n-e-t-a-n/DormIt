@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
@@ -7,7 +7,7 @@ export default StyleSheet.create({
   },
   dormName: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
   },
   dormOwner: {
@@ -15,8 +15,8 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   imageContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 20,
   },
   image: {
@@ -34,7 +34,7 @@ export default StyleSheet.create({
   },
   contactContainer: {
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: "gray",
     padding: 10,
     marginBottom: 20,
   },
@@ -42,13 +42,13 @@ export default StyleSheet.create({
     fontSize: 16,
   },
   buttonContainer: {
-    backgroundColor: 'blue',
+    backgroundColor: "blue",
     paddingVertical: 10,
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 5,
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: "white",
   },
 });

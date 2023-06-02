@@ -1,37 +1,55 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { Text, View, Pressable } from "react-native";
-import { signOut } from "firebase/auth";
-import { auth } from "../../../config/firebase";
+import {
+  Text,
+  View,
+  Pressable,
+  FlatList,
+  ScrollView,
+  Dimensions,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { createToastShort } from "../../utils/helpers";
+import { auth } from "../../../config/firebase";
 import { homeStyles } from "../../styles/user";
+import { DormData, DormCard } from "../../utils/components";
 
-export default function Home({ navigation }) {
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: null,
-    });
-  }, [navigation]);
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        createToastShort("You've logged out.");
-        navigation.goBack();
-      })
-      .catch((error) => {
-        createToastShort(error.code);
-      });
+export default function Home() {
+  const navigation = useNavigation();
+
+  const handleDormPress = (dormId) => {
+    navigation.navigate("DormDetails", { dormId });
   };
 
   return (
-    <View style={homeStyles.container}>
-      <Text style={homeStyles.email}>{auth.currentUser?.email} | User</Text>
-      <StatusBar style="auto" />
-
-      <Pressable style={[homeStyles.button, homeStyles.logoutButton]} onPress={handleLogout}>
-        <Text style={homeStyles.text}>Logout</Text>
-      </Pressable>
+    <View>
+      <FlatList
+        style={homeStyles.list}
+        data={DormData}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => handleDormPress(item.id)}>
+            <DormCard
+              screenWidth={SCREEN_WIDTH * 0.95}
+              dormName={item.dormName}
+              location={item.location}
+              image={item.image}
+              onPressDormCard={() => handleDormPress(item.id)}
+            />
+          </TouchableOpacity>
+        )}
+      />
     </View>
+
+  /*
+    <View style={homeStyles.container}>
+      <Text style={homeStyles.email}>{auth.currentUser?.email}</Text>
+      <StatusBar style="auto" />
+    </View>
+    */
   );
 }

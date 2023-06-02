@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import Checkbox from 'expo-checkbox';
-import { searchStyles } from '../../styles/user';
+import React, { useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import Checkbox from "expo-checkbox";
+import { searchStyles } from "../../styles/user";
 
 export default function Search() {
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const [amenities, setAmenities] = useState([]);
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("");
 
   const handleSearch = () => {
     // search logic ahhh
@@ -17,7 +17,7 @@ export default function Search() {
     if (checked) {
       setAmenities([...amenities, amenity]);
     } else {
-      setAmenities(amenities.filter(item => item !== amenity));
+      setAmenities(amenities.filter((item) => item !== amenity));
     }
   };
 
@@ -52,16 +52,16 @@ export default function Search() {
         <View style={searchStyles.CheckboxContainer}>
           <Checkbox
             style={searchStyles.Checkbox}
-            value={amenities.includes('WiFi')}
-            onValueChange={checked => handleAmenityChange('WiFi', checked)}
+            value={amenities.includes("WiFi")}
+            onValueChange={(checked) => handleAmenityChange("WiFi", checked)}
           />
           <Text style={searchStyles.CheckboxLabel}>WiFi</Text>
         </View>
         <View style={searchStyles.CheckboxContainer}>
           <Checkbox
             style={searchStyles.Checkbox}
-            value={amenities.includes('Kitchen')}
-            onValueChange={checked => handleAmenityChange('Kitchen', checked)}
+            value={amenities.includes("Kitchen")}
+            onValueChange={(checked) => handleAmenityChange("Kitchen", checked)}
           />
           <Text style={searchStyles.CheckboxLabel}>Kitchen</Text>
         </View>
@@ -69,16 +69,16 @@ export default function Search() {
         <View style={searchStyles.CheckboxContainer}>
           <Checkbox
             style={searchStyles.Checkbox}
-            value={amenities.includes('Parking')}
-            onValueChange={checked => handleAmenityChange('Parking', checked)}
+            value={amenities.includes("Parking")}
+            onValueChange={(checked) => handleAmenityChange("Parking", checked)}
           />
           <Text style={searchStyles.CheckboxLabel}>Parking</Text>
         </View>
         <View style={searchStyles.CheckboxContainer}>
           <Checkbox
             style={searchStyles.Checkbox}
-            value={amenities.includes('Gym')}
-            onValueChange={checked => handleAmenityChange('Gym', checked)}
+            value={amenities.includes("Gym")}
+            onValueChange={(checked) => handleAmenityChange("Gym", checked)}
           />
           <Text style={searchStyles.CheckboxLabel}>Gym</Text>
         </View>
@@ -86,16 +86,16 @@ export default function Search() {
         <View style={searchStyles.CheckboxContainer}>
           <Checkbox
             style={searchStyles.Checkbox}
-            value={amenities.includes('Smoke')}
-            onValueChange={checked => handleAmenityChange('Smoke', checked)}
+            value={amenities.includes("Smoke")}
+            onValueChange={(checked) => handleAmenityChange("Smoke", checked)}
           />
           <Text style={searchStyles.CheckboxLabel}>Smoke Alarm</Text>
         </View>
         <View style={searchStyles.CheckboxContainer}>
           <Checkbox
             style={searchStyles.Checkbox}
-            value={amenities.includes('Security')}
-            onValueChange={checked => handleAmenityChange('Security', checked)}
+            value={amenities.includes("Security")}
+            onValueChange={(checked) => handleAmenityChange("Security", checked)}
           />
           <Text style={searchStyles.CheckboxLabel}>Security System</Text>
         </View>
@@ -104,12 +104,12 @@ export default function Search() {
       <View style={searchStyles.inputContainer}>
         <Text style={searchStyles.label}>Location:</Text>
         <View style={searchStyles.priceContainer}>
-        <TextInput
-          style={searchStyles.input}
-          placeholder="Enter location"
-          value={location}
-          onChangeText={setLocation}
-        />
+          <TextInput
+            style={searchStyles.input}
+            placeholder="Enter location"
+            value={location}
+            onChangeText={setLocation}
+          />
         </View>
       </View>
 
