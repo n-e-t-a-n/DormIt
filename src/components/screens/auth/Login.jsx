@@ -4,8 +4,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Pressable, Text, TextInput, ToastAndroid, View } from "react-native";
 
 import { auth } from "@config/firebase";
+import { getAuthUser } from "@services/user";
 import { loginStyles } from "@styles/auth";
-import { getCurrentUser } from "@utils/database";
 
 function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ function Login({ navigation }) {
       .then(async () => {
         ToastAndroid.show("Successfully logged in.", ToastAndroid.SHORT);
 
-        const user = await getCurrentUser();
+        const user = await getAuthUser();
 
         navigation.navigate(`${user?.role}Stack`, { screen: "Home" });
       })

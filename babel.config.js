@@ -13,6 +13,7 @@ module.exports = (api) => {
             "@config": "./src/config",
             "@navigation": "./src/navigation",
             "@components": "./src/components",
+            "@services": "./src/services",
             "@styles": "./src/styles",
             "@theme": "./src/theme",
             "@utils": "./src/utils",
