@@ -60,7 +60,6 @@ function ReservationApprovalPage() {
   const handleAcceptReservation = async (reservation_id) => {
     try {
       console.log(reservation_id);
-      const db = firebase.firestore();
       const reservationQuery = db.collection("reservations").where("reservation_id", "==", reservation_id);
 
       // Fetch the matching document(s) using the query
@@ -106,7 +105,6 @@ function ReservationApprovalPage() {
   const handleRejectReservation = async (reservation_id) => {
     try {
       console.log(reservation_id);
-      const db = firebase.firestore();
       const reservationQuery = db.collection("reservations").where("reservation_id", "==", reservation_id);
 
       // Fetch the matching document(s) using the query

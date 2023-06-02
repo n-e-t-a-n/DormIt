@@ -44,15 +44,15 @@ function AddListingScreen() {
   };
 
   const handleAvailableSlotsChange = (text) => {
-    const intValue = parseInt(text);
-    if (!isNaN(intValue) && intValue >= 0) {
+    const intValue = parseInt(text, 10);
+    if (!Number.isNaN(intValue) && intValue >= 0) {
       setListingData({ ...listingData, available_slots: text });
     }
   };
 
   const handlePriceChange = (text) => {
-    const intValue = parseInt(text);
-    if (!isNaN(intValue) && intValue >= 0) {
+    const intValue = parseInt(text, 10);
+    if (!Number.isNaN(intValue) && intValue >= 0) {
       setListingData({ ...listingData, price: text });
     }
   };
