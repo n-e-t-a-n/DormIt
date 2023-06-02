@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, ToastAndroid, View } from "react-native";
 
 import { auth } from "@config/firebase";
 import { loginStyles } from "@styles/auth";
 import { getCurrentUser } from "@utils/database";
-import { createToastShort } from "@utils/helpers";
 
 function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -15,7 +14,7 @@ function Login({ navigation }) {
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email?.trim(), password)
       .then(async () => {
-        createToastShort("Successfully logged in.");
+        ToastAndroid.show("Successfully logged in.", ToastAndroid.SHORT);
 
         const user = await getCurrentUser();
 
@@ -23,10 +22,11 @@ function Login({ navigation }) {
       })
       .catch((error) => {
         const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
+        const formattedMessage = `${
+          (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
+        }.`;
 
-        createToastShort(
-          `${(warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")}.`
-        );
+        ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
       });
   };
 

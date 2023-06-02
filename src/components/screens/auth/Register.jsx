@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, ToastAndroid, View } from "react-native";
 
 import { auth } from "@config/firebase";
 import { registerStyles } from "@styles/auth";
-import { createToastShort } from "@utils/helpers";
 
 function Register({ navigation }) {
   const [email, setEmail] = useState("");
@@ -15,14 +14,15 @@ function Register({ navigation }) {
     createUserWithEmailAndPassword(auth, email?.trim(), password)
       .then(() => {
         navigation.goBack();
-        createToastShort("Account created successfully!");
+        ToastAndroid.show("Account created successfully!", ToastAndroid.SHORT);
       })
       .catch((error) => {
         const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
+        const formattedMessage = `${
+          (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
+        }.`;
 
-        createToastShort(
-          `${(warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")}.`
-        );
+        ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
       });
   };
 

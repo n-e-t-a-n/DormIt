@@ -1,21 +1,20 @@
 import React from "react";
 
 import { signOut } from "firebase/auth";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, ToastAndroid, View } from "react-native";
 
 import { auth } from "@config/firebase";
 import { userProfileStyles } from "@styles/user";
-import { createToastShort } from "@utils/helpers";
 
 function UserProfile({ navigation }) {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        createToastShort("You've logged out.");
+        ToastAndroid.show("You've logged out.", ToastAndroid.SHORT);
         navigation.navigate("Login");
       })
       .catch((error) => {
-        createToastShort(error.code);
+        ToastAndroid.show(error.code, ToastAndroid.SHORT);
       });
   };
 
