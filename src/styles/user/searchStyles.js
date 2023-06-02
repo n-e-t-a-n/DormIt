@@ -1,3 +1,4 @@
+import { color, font } from "@theme";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -7,21 +8,21 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: font.size.TITLE,
+    fontWeight: font.weight.BOLD,
     marginBottom: 16,
   },
   inputContainer: {
     marginBottom: 16,
   },
   label: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: font.size.TITLE,
+    fontWeight: font.weight.BOLD,
     marginBottom: 8,
   },
   labelSmall: {
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: font.size.SMALL,
+    fontWeight: font.weight.BOLD,
     marginBottom: 8,
   },
   priceContainer: {
@@ -32,7 +33,7 @@ export default StyleSheet.create({
     flex: 1,
     height: 40,
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: color.LIGHT_GRAY,
     borderRadius: 4,
     paddingHorizontal: 8,
   },
@@ -48,6 +49,6 @@ export default StyleSheet.create({
     marginRight: 8,
   },
   CheckboxLabel: {
-    fontSize: 16,
+    fontSize: font.size.TEXT,
   },
 });

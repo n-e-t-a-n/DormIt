@@ -53,10 +53,7 @@ function Login({ navigation }) {
         <Text style={loginStyles.text}>Login</Text>
       </Pressable>
 
-      <Pressable
-        style={[loginStyles.button, loginStyles.registerButton]}
-        onPress={() => navigation.navigate("Register")}
-      >
+      <Pressable style={loginStyles.button} onPress={() => navigation.navigate("Register")}>
         <Text style={loginStyles.text}>Register</Text>
       </Pressable>
     </View>

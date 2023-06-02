@@ -1,9 +1,10 @@
+import { color, font } from "@theme";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: color.WHITE,
     justifyContent: "center",
     paddingHorizontal: 40,
   },
@@ -12,11 +13,12 @@ export default StyleSheet.create({
     width: "100%",
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: color.LIGHT_GRAY,
     borderRadius: 5,
     paddingHorizontal: 10,
   },
   button: {
+    backgroundColor: color.BLACK,
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
@@ -25,17 +27,13 @@ export default StyleSheet.create({
     elevation: 3,
   },
   loginButton: {
-    backgroundColor: "#000000",
     marginBottom: 3,
   },
-  registerButton: {
-    backgroundColor: "#000000",
-  },
   text: {
-    fontSize: 16,
+    fontSize: font.size.TEXT,
     lineHeight: 21,
-    fontWeight: "bold",
+    fontWeight: font.weight.BOLD,
     letterSpacing: 0.25,
-    color: "white",
+    color: color.WHITE,
   },
 });

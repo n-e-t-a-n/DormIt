@@ -1,9 +1,10 @@
+import { color, font } from "@theme";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: color.WHITE,
     padding: 20,
   },
   input: {
@@ -11,7 +12,7 @@ export default StyleSheet.create({
     width: "100%",
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: color.LIGHT_GRAY,
     borderRadius: 5,
     paddingHorizontal: 10,
   },
@@ -25,20 +26,20 @@ export default StyleSheet.create({
   },
   logoutButton: {
     marginTop: 3,
-    backgroundColor: "#000000",
+    backgroundColor: color.BLACK,
     marginBottom: 3,
   },
   email: {
-    fontSize: 16,
+    fontSize: font.size.TEXT,
     lineHeight: 21,
-    fontWeight: "bold",
+    fontWeight: font.weight.BOLD,
     letterSpacing: 0.25,
   },
   text: {
-    fontSize: 16,
+    fontSize: font.size.TEXT,
     lineHeight: 21,
-    fontWeight: "bold",
+    fontWeight: font.weight.BOLD,
     letterSpacing: 0.25,
-    color: "white",
+    color: color.WHITE,
   },
 });

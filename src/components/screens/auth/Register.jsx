@@ -39,10 +39,7 @@ function Register({ navigation }) {
         <Text style={registerStyles.text}>Register</Text>
       </Pressable>
 
-      <Pressable
-        style={[registerStyles.button, registerStyles.cancelButton]}
-        onPress={() => navigation.goBack()}
-      >
+      <Pressable style={registerStyles.button} onPress={() => navigation.goBack()}>
         <Text style={registerStyles.text}>Cancel</Text>
       </Pressable>
     </View>

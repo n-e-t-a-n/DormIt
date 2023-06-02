@@ -1,3 +1,4 @@
+import { color, font } from "@theme";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -6,12 +7,12 @@ export default StyleSheet.create({
     padding: 20,
   },
   dormName: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: font.size.TITLE,
+    fontWeight: font.weight.BOLD,
     marginBottom: 10,
   },
   dormOwner: {
-    fontSize: 16,
+    fontSize: font.size.TEXT,
     marginBottom: 10,
   },
   imageContainer: {
@@ -25,30 +26,30 @@ export default StyleSheet.create({
     borderRadius: 5,
   },
   description: {
-    fontSize: 18,
+    fontSize: font.size.SUBTITLE,
     marginBottom: 10,
   },
   price: {
-    fontSize: 16,
+    fontSize: font.size.TEXT,
     marginBottom: 10,
   },
   contactContainer: {
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: color.LIGHT_GRAY,
     padding: 10,
     marginBottom: 20,
   },
   contactInfo: {
-    fontSize: 16,
+    fontSize: font.size.TEXT,
   },
   buttonContainer: {
-    backgroundColor: "blue",
+    backgroundColor: color.PRIMARY,
     paddingVertical: 10,
     alignItems: "center",
     borderRadius: 5,
   },
   buttonText: {
-    fontSize: 18,
-    color: "white",
+    fontSize: font.size.SUBTITLE,
+    color: color.WHITE,
   },
 });
