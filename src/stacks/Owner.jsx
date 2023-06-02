@@ -1,17 +1,28 @@
 import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Home } from "../screens/owner";
+import { AddListing, Dashboard, Reservation } from "../screens/owner";
 import { auth } from "../../config/firebase";
-import { default as AddListingScreen } from "../screens/owner/AddListing";
-import { default as DashboardScreen } from "../screens/owner/Dashboard";
-import { default as ReservationApprovalPage } from "../screens/owner/Reservation";
 
-const OwnerStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function TabScreens() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Dashboard" component={Dashboard} />
+      <Tab.Screen name="AddListing" component={AddListing} />
+      <Tab.Screen name="Reservation" component={Reservation} />
+    </Tab.Navigator>
+  );
+}
 
 export default function Owner({ navigation }) {
+  if (!auth.currentUser) navigation.goBack();
+
   return (
-    <OwnerStack.Navigator>
-      <OwnerStack.Screen name="Home" component={Home} />
-    </OwnerStack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="TabScreens" component={TabScreens} />
+    </Stack.Navigator>
   );
 }
