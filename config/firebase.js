@@ -12,13 +12,13 @@ const firebaseConfig = {
   measurementId: "G-W15NPVRFCV",
 };
 
-const startFirebaseAppIfExists = (config = {}) => {
+function startFirebaseAppIfExists(config = {}) {
   try {
     return getApp();
   } catch (error) {
     return initializeApp(config);
   }
-};
+}
 
 export const app = startFirebaseAppIfExists(firebaseConfig);
 export const auth = getAuth(app);
