@@ -15,8 +15,8 @@ export default function DormDetails({ route }) {
       <View style={dormDetailsStyles.imageContainer}>
         {/* Render dorm images here */}
         {dorm?.image && Array.isArray(dorm.image) ? (
-          dorm.image.map((image, index) => (
-            <Image key={index} style={dormDetailsStyles.image} source={{ uri: image }} />
+          dorm.image.map((image) => (
+            <Image key={image} style={dormDetailsStyles.image} source={{ uri: image }} />
           ))
         ) : (
           <Text>No images available</Text>

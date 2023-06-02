@@ -1,8 +1,6 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { Text, View, Pressable, TouchableOpacity, Image, StyleSheet, Dimensions } from "react-native";
-import { auth } from "../../../config/firebase";
-import { createToastShort } from "../helpers";
+
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import { homeStyles } from "../../styles/user";
 
 export default function DormCard({ onPressDormCard, dormName, location, image, screenWidth }) {

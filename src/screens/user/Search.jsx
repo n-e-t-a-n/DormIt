@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+
 import Checkbox from "expo-checkbox";
+import { Button, Text, TextInput, View } from "react-native";
+
 import { searchStyles } from "../../styles/user";
 
 export default function Search() {
