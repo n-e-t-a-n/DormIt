@@ -1,5 +1,5 @@
+import { db } from "@config/firebase";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../../config/firebase";
 
 export default async function storeOwner({ email }, roleType) {
   try {

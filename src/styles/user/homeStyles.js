@@ -65,7 +65,7 @@ export default StyleSheet.create({
     borderTopRightRadius: 5,
     height: 200,
   },
-  dormName: {
+  name: {
     fontSize: 17,
     fontWeight: "bold",
     color: "gray",

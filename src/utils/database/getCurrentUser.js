@@ -1,5 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db, auth } from "../../../config/firebase";
+import { db, auth } from "@config/firebase";
 
 export default async function getCurrentUser() {
   try {

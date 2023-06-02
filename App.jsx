@@ -1,6 +1,7 @@
 import React from "react";
+
+import Auth from "@navigation/Auth";
 import { NavigationContainer } from "@react-navigation/native";
-import Auth from "./src/stacks/Auth";
 
 function App() {
   return (
