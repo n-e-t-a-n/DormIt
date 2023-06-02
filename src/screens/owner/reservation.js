@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-import { firebaseConfig } from "../../../config/firebase"; // Import your Firebase configuration from firebase.js
-
-// Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+import { db } from "../../../config/firebase"; // Import your Firebase configuration from firebase.js
 
 function ReservationApprovalPage() {
   const [reservations, setReservations] = useState([]);
@@ -19,7 +11,6 @@ function ReservationApprovalPage() {
     const fetchReservations = async () => {
       try {
         const ownerEmail = "test@owner.com"; // CHANGEME
-        const db = firebase.firestore();
 
         // Get the reservations where the owner_id matches the owner's email
         const reservationsSnapshot = await db
