@@ -1,5 +1,7 @@
-import { auth, db } from "@config/firebase";
+import type { DocumentData } from "firebase/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+
+import { auth, db } from "@config/firebase";
 
 /**
  * Gets the currently autheticated user.
@@ -11,16 +13,19 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
  *
  * @returns Returns the authenticated user's data, or null if it doesn't exist.
  */
-export async function getAuthUser() {
+export async function getAuthUser(): Promise<DocumentData | null> {
+  let authUser: DocumentData | null = null;
+
   try {
     const email = auth?.currentUser?.email || "doesnotexist";
 
     const user = await getDoc(doc(db, "users", email));
-
-    return user.exists() ? user.data() : null;
+    if (user.exists()) authUser = user.data();
   } catch (error) {
     console.error(error);
   }
+
+  return authUser;
 }
 
 /**
@@ -36,9 +41,9 @@ export async function getAuthUser() {
  *
  * @param Data Data of the user to-be-stored.
  * @param {string} roleType role of the user.
- * @returns {void} Returns nothing.
+ * @returns Returns nothing.
  */
-export async function createUser({ email }, roleType) {
+export async function createUser({ email }: { email: string }, roleType: string): Promise<void> {
   try {
     await setDoc(doc(db, "users", email), {
       first_name: "test",

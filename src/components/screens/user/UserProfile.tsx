@@ -3,11 +3,12 @@ import React from "react";
 import { signOut } from "firebase/auth";
 import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 
+import type { UserTabScreenProps } from "@@types/navigation/User";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
 
-function UserProfile({ navigation }) {
+function UserProfile({ navigation }: UserTabScreenProps<"UserProfile">) {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {

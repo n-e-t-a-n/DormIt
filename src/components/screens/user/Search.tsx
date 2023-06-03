@@ -6,17 +6,19 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Button } from "@components/common";
 import { color, font } from "@theme";
 
+type Amenity = "WiFi" | "Kitchen" | "Parking" | "Gym" | "Smoke" | "Security";
+
 function Search() {
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [amenities, setAmenities] = useState([]);
-  const [location, setLocation] = useState("");
+  const [minPrice, setMinPrice] = useState<string>("");
+  const [maxPrice, setMaxPrice] = useState<string>("");
+  const [amenities, setAmenities] = useState<Amenity[]>([]);
+  const [location, setLocation] = useState<string>("");
 
   const handleSearch = () => {
     // search logic ahhh
   };
 
-  const handleAmenityChange = (amenity, checked) => {
+  const handleAmenityChange = (amenity: Amenity, checked: boolean) => {
     if (checked) {
       setAmenities([...amenities, amenity]);
     } else {

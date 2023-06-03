@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { Button, Text, TextInput, View } from "react-native";
 
+import type { DormListing } from "@@types/models";
 import { db } from "@config/firebase"; // Import the `db` object from firebase.js
 
 function AddListingScreen() {
-  const [listingData, setListingData] = useState({
+  const [listingData, setListingData] = useState<DormListing>({
     address: "",
     available_slots: "",
     description: "",
@@ -37,20 +38,21 @@ function AddListingScreen() {
         description: "",
         dorm_name: "",
         price: "",
+        user_id: "test@owner.com",
       });
     } catch (error) {
       console.error("Error adding listing:", error);
     }
   };
 
-  const handleAvailableSlotsChange = (text) => {
+  const handleAvailableSlotsChange = (text: string) => {
     const intValue = parseInt(text, 10);
     if (!Number.isNaN(intValue) && intValue >= 0) {
       setListingData({ ...listingData, available_slots: text });
     }
   };
 
-  const handlePriceChange = (text) => {
+  const handlePriceChange = (text: string) => {
     const intValue = parseInt(text, 10);
     if (!Number.isNaN(intValue) && intValue >= 0) {
       setListingData({ ...listingData, price: text });

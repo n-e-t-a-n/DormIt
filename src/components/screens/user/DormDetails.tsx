@@ -1,10 +1,15 @@
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
+import type { Dorm } from "@@types/models";
 import { Button } from "@components/common";
 import { color, font } from "@theme";
 
-function DormDetails({ dorm }) {
+interface DormDetailsProps {
+  dorm?: Dorm;
+}
+
+function DormDetails({ dorm }: DormDetailsProps) {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.dormName}>{dorm?.dormName}</Text>

@@ -1,3 +1,7 @@
+// @ts-nocheck
+// Remove this to see all theerrors
+// TODO: Model the reservations type
+
 import React, { useEffect, useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 
@@ -6,7 +10,7 @@ import { font } from "@theme";
 
 function ReservationApprovalPage() {
   const [reservations, setReservations] = useState([]);
-  const [refresh, setRefresh] = useState(false); // State variable for page refresh
+  const [refresh, setRefresh] = useState<boolean>(false); // State variable for page refresh
 
   useEffect(() => {
     // Fetch reservations from Firebase database

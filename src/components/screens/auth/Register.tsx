@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 
+import type { AuthStackScreenProps } from "@@types/navigation/Auth";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
 
-function Register({ navigation }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Register({ navigation }: AuthStackScreenProps<"Register">) {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleRegister = async () => {
     createUserWithEmailAndPassword(auth, email?.trim(), password)

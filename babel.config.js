@@ -8,6 +8,7 @@ module.exports = (api) => {
         "module-resolver",
         {
           alias: {
+            "@@types": "./src/@types",
             "@assets": "./src/assets",
             "@constants": "./src/constants",
             "@config": "./src/config",

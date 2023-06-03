@@ -1,0 +1,35 @@
+{
+  "include": ["**/*.ts", "**/*.tsx"],
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "module": "ESNext",
+    "incremental": true,
+    "plugins": [{ "name": "typescript-eslint-language-service" }],
+    "baseUrl": "./src",
+    "paths": {
+      "@*": ["*"],
+      "@@types/*": ["@types/*"],
+      "@assets/*": ["assets/*"],
+      "@constants/*": ["constants/*"],
+      "@config/*": ["config/*"],
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@navigation/*": ["navigation/*"],
+      "@services/*": ["services/*"],
+      "@theme/*": ["theme/*"],
+      "@utils/*": ["utils/*"]
+    },
+
+    "strict": true,
+    "allowJs": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true
+  }
+}
