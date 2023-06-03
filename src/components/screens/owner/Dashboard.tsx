@@ -30,11 +30,11 @@ function DashboardScreen() {
               const reservationRequests = reservationsSnapshot.size;
 
               return { ...listing, reservationRequests };
-            } else {
-              // Handle case when the listing does not have a `listing_id` field
-              console.error("Listing does not have a `listing_id` field:", listing);
-              return listing;
             }
+
+            // Handle case when the listing does not have a `listing_id` field
+            console.error("Listing does not have a `listing_id` field:", listing);
+            return listing;
           })
         );
 

@@ -28,7 +28,7 @@ function Home({ navigation }: AdminStackScreenProps<"Home">) {
   return (
     <View style={styles.container}>
       <Text style={styles.email}>{auth.currentUser?.email} | Admin</Text>
-      <StatusBar style="auto" />
+      <StatusBar />
 
       <Button label="Logout" style={styles.logoutButton} onPress={handleLogout} />
     </View>

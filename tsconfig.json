@@ -3,6 +3,7 @@
   "exclude": ["node_modules", "babel.config.js", "metro.config.js"],
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "plugins": [{ "name": "typescript-eslint-language-service" }],
     "baseUrl": "./src/",
     "paths": {
       "@@types/*": ["@types/*"],

@@ -30,6 +30,8 @@ function Login({ navigation }: AuthStackScreenProps<"Login">) {
             case "Admin":
               navigation.navigate("AdminStack", { screen: "Home" });
               break;
+            default:
+              break;
           }
         }
       })
