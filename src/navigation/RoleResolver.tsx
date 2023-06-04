@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { doc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
@@ -9,10 +9,10 @@ import User from "@navigation/User";
 import Loading from "@components/screens/Loading";
 
 import { db } from "@config/firebase";
-import { RoleResolverProps } from "@@types/models";
+import { UserContext } from "@hooks/UserContext";
 
-export default function RoleResolver({ user }: RoleResolverProps) {
-  const [value] = useDocument(doc(db, "users", user?.email || ""));
+export default function RoleResolver() {
+  const [value] = useDocument(doc(db, "users", useContext(UserContext)?.email || ""));
 
   const role = value?.data()?.role;
 
