@@ -1,30 +1,31 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import { StatusBar } from "expo-status-bar";
-import { signOut } from "firebase/auth";
 import { StyleSheet, Text, ToastAndroid, View } from "react-native";
+import { useSignOut } from "react-firebase-hooks/auth";
 
+import Loading from "@components/screens/Loading";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color, font } from "@theme";
 
 function Home() {
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        ToastAndroid.show("You've logged out.", ToastAndroid.SHORT);
-      })
-      .catch((error) => {
-        ToastAndroid.show(error.code, ToastAndroid.SHORT);
-      });
-  };
+  const [signOut, loading, error] = useSignOut(auth);
+
+  useEffect(() => {
+    if (error) {
+      ToastAndroid.show(error.message, ToastAndroid.SHORT);
+    }
+  }, [error]);
+
+  if (loading) return <Loading />;
 
   return (
     <View style={styles.container}>
       <Text style={styles.email}>{auth.currentUser?.email} | Admin</Text>
       <StatusBar />
 
-      <Button label="Logout" style={styles.logoutButton} onPress={handleLogout} />
+      <Button label="Logout" style={styles.logoutButton} onPress={() => signOut()} />
     </View>
   );
 }
