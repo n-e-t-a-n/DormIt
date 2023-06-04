@@ -4,12 +4,11 @@ import { StatusBar } from "expo-status-bar";
 import { signOut } from "firebase/auth";
 import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 
-import type { AdminStackScreenProps } from "@@types/navigation/Admin";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color, font } from "@theme";
 
-function Home({ navigation }: AdminStackScreenProps<"Home">) {
+function Home() {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {

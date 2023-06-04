@@ -5,7 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import type { UserStackParamList, UserTabParamList } from "@@types/navigation/User";
 import { DormDetails, Home, Search, UserProfile } from "@components/screens/user";
-import { auth } from "@config/firebase";
 
 const Tab = createBottomTabNavigator<UserTabParamList>();
 const Stack = createStackNavigator<UserStackParamList>();

@@ -5,7 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import type { OwnerStackParamList, OwnerTabParamList } from "@@types/navigation/Owner";
 import { AddListing, Dashboard, Reservation } from "@components/screens/owner";
-import { auth } from "@config/firebase";
 
 const Tab = createBottomTabNavigator<OwnerTabParamList>();
 const Stack = createStackNavigator<OwnerStackParamList>();

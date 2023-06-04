@@ -22,5 +22,4 @@ export type Dorm = {
 
 export interface RoleResolverProps {
   user: User;
-};
-
+}
