@@ -1,5 +1,3 @@
-// @ts-nocheck
-// Remove this to see all theerrors
 // TODO: Model the reservations type
 
 import React, { useEffect, useState } from "react";
