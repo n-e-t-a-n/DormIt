@@ -1,3 +1,5 @@
+import { User } from "firebase/auth";
+
 export type DormListing = {
   address: string;
   available_slots: string;
@@ -17,3 +19,8 @@ export type Dorm = {
   price?: string;
   contactInfo?: string;
 };
+
+export interface RoleResolverProps {
+  user: User;
+};
+
