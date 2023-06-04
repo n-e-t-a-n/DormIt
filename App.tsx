@@ -9,15 +9,12 @@ import RoleResolver from "@navigation/RoleResolver";
 import { auth } from "@config/firebase";
 import { UserContext } from "@hooks/UserContext";
 
-
 function App() {
   const [user] = useAuthState(auth);
-  
+
   return (
     <UserContext.Provider value={user}>
-      <NavigationContainer>
-        {user ? <RoleResolver /> : <Auth />}
-      </NavigationContainer>
+      <NavigationContainer>{user ? <RoleResolver /> : <Auth />}</NavigationContainer>
     </UserContext.Provider>
   );
 }
