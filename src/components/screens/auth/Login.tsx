@@ -1,38 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
 
+import Loading from "@components/screens/Loading";
+
 function Login({ navigation }: AuthStackScreenProps<"Login">) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email?.trim(), password)
-      .then(async () => {
-        ToastAndroid.show("Successfully logged in.", ToastAndroid.SHORT);
-      })
-      .catch((error) => {
-        const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
-        const formattedMessage = `${
-          (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
-        }.`;
+  const [signInWithEmailAndPassword, , loading, error] = useSignInWithEmailAndPassword(auth);
 
-        ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
-      });
-  };
+  useEffect(() => {
+    if (error) {
+      const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
+      const formattedMessage = `${
+        (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
+      }.`;
+      ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
+    }
+  }, [error]);
+
+  if (loading) return <Loading />;
 
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} placeholder="Email" onChangeText={setEmail} />
       <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={setPassword} />
 
-      <Button label="Login" style={styles.loginButton} onPress={handleLogin} />
+      <Button
+        label="Login"
+        style={styles.loginButton}
+        onPress={() => signInWithEmailAndPassword(email?.trim(), password)}
+      />
       <Button label="Register" onPress={() => navigation.navigate("Register")} />
     </View>
   );
