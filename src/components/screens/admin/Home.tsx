@@ -10,15 +10,10 @@ import { auth } from "@config/firebase";
 import { color, font } from "@theme";
 
 function Home({ navigation }: AdminStackScreenProps<"Home">) {
-  React.useLayoutEffect(() => {
-    navigation.setOptions({ headerLeft: undefined });
-  }, [navigation]);
-
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
         ToastAndroid.show("You've logged out.", ToastAndroid.SHORT);
-        navigation.goBack();
       })
       .catch((error) => {
         ToastAndroid.show(error.code, ToastAndroid.SHORT);

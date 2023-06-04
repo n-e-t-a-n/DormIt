@@ -13,7 +13,6 @@ function UserProfile({ navigation }: UserTabScreenProps<"UserProfile">) {
     signOut(auth)
       .then(() => {
         ToastAndroid.show("You've logged out.", ToastAndroid.SHORT);
-        navigation.navigate("Login");
       })
       .catch((error) => {
         ToastAndroid.show(error.code, ToastAndroid.SHORT);

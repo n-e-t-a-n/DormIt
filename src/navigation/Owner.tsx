@@ -3,7 +3,6 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import type { AuthStackScreenProps } from "@@types/navigation/Auth";
 import type { OwnerStackParamList, OwnerTabParamList } from "@@types/navigation/Owner";
 import { AddListing, Dashboard, Reservation } from "@components/screens/owner";
 import { auth } from "@config/firebase";
@@ -21,9 +20,7 @@ function TabScreens() {
   );
 }
 
-export default function Owner({ navigation }: AuthStackScreenProps<"OwnerStack">) {
-  if (!auth.currentUser) navigation.goBack();
-
+export default function Owner() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="TabScreens" component={TabScreens} />

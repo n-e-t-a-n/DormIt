@@ -15,7 +15,6 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
   const handleRegister = async () => {
     createUserWithEmailAndPassword(auth, email?.trim(), password)
       .then(() => {
-        navigation.goBack();
         ToastAndroid.show("Account created successfully!", ToastAndroid.SHORT);
       })
       .catch((error) => {

@@ -6,7 +6,6 @@ import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
-import { getAuthUser } from "@services/user";
 import { color } from "@theme";
 
 function Login({ navigation }: AuthStackScreenProps<"Login">) {
@@ -17,23 +16,6 @@ function Login({ navigation }: AuthStackScreenProps<"Login">) {
     signInWithEmailAndPassword(auth, email?.trim(), password)
       .then(async () => {
         ToastAndroid.show("Successfully logged in.", ToastAndroid.SHORT);
-
-        const user = await getAuthUser();
-        if (user) {
-          switch (user.role) {
-            case "User":
-              navigation.navigate("UserStack", { screen: "TabScreens" });
-              break;
-            case "Owner":
-              navigation.navigate("OwnerStack", { screen: "TabScreens" });
-              break;
-            case "Admin":
-              navigation.navigate("AdminStack", { screen: "Home" });
-              break;
-            default:
-              break;
-          }
-        }
       })
       .catch((error) => {
         const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
