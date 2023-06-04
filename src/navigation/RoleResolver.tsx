@@ -9,7 +9,7 @@ import User from "@navigation/User";
 import Loading from "@components/screens/Loading";
 
 import { db } from "@config/firebase";
-import { UserContext } from "@hooks/UserContext";
+import { UserContext } from "@hooks/AuthContext";
 
 export default function RoleResolver() {
   const [value] = useDocument(doc(db, "users", useContext(UserContext)?.email || ""));
