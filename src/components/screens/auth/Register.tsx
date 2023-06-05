@@ -14,22 +14,18 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
   const [password, setPassword] = useState<string>("");
 
   const handleRegister = async () => {
-    createUserWithEmailAndPassword(auth, email?.trim(), password)
-      .then(async () => {
+    try {
+        await createUserWithEmailAndPassword(auth, email?.trim(), password);
         await createUser({ email: email }, "User");
-      })
-      .then(() => {
-        ToastAndroid.show("Account created successfully!", ToastAndroid.SHORT);
-      })
-      .catch((error) => {
+    } catch (error: any) {
         const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
         const formattedMessage = `${
           (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
         }.`;
 
         ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
-      });
-  };
+      }
+    }
 
   return (
     <View style={styles.container}>
