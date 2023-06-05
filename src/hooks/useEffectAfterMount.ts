@@ -10,5 +10,5 @@ export default function useEffectAfterMount(fn: EffectCallback, inputs: Readonly
     hasMounted.current = true;
 
     return () => {};
-  }, inputs);
+  }, [inputs]);
 }
