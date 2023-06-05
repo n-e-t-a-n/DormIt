@@ -8,5 +8,7 @@ export default function useEffectAfterMount(fn: EffectCallback, inputs: Readonly
       return fn();
     }
     hasMounted.current = true;
+
+    return () => {};
   }, inputs);
 }
