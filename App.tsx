@@ -8,23 +8,18 @@ import RoleResolver from "@navigation/RoleResolver";
 
 import { ToastAndroid } from "react-native";
 
-import { useIfNotMounted } from "@hooks/AuthContext";
+import useEffectAfterMount from "@hooks/useEffectAfterMount";
 import { auth } from "@config/firebase";
-import { UserContext } from "@hooks/AuthContext";
 
 function App() {
   const [user] = useAuthState(auth);
 
-  useIfNotMounted(() => {
+  useEffectAfterMount(() => {
     const message = user ? "Successfully logged in." : "You've logged out";
     ToastAndroid.show(message, ToastAndroid.SHORT);
   }, [user]);
 
-  return (
-    <UserContext.Provider value={user}>
-      <NavigationContainer>{user ? <RoleResolver /> : <Auth />}</NavigationContainer>
-    </UserContext.Provider>
-  );
+  return <NavigationContainer>{user ? <RoleResolver /> : <Auth />}</NavigationContainer>;
 }
 
 export default App;
