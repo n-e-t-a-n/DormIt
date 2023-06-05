@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
+import { createUser } from "@services/user";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
@@ -14,6 +15,9 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
 
   const handleRegister = async () => {
     createUserWithEmailAndPassword(auth, email?.trim(), password)
+      .then(async () => {
+        await createUser({ email: email }, "User");
+      })
       .then(() => {
         ToastAndroid.show("Account created successfully!", ToastAndroid.SHORT);
       })
