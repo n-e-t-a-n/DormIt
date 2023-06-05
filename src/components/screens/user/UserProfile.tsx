@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useSignOut } from "react-firebase-hooks/auth";
 import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 
-import Loading from "@components/screens/Loading"
+import Loading from "@components/screens/Loading";
 import { Button } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
