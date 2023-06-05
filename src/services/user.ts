@@ -45,7 +45,7 @@ export async function getAuthUser(): Promise<DocumentData | null> {
  */
 export async function createUser({ email }: { email: string }, roleType: string): Promise<void> {
   try {
-    await setDoc(doc(db, "users", email), {
+    await setDoc(doc(db, "users", email?.trim()?.toLowerCase()), {
       first_name: "test",
       last_name: "account",
       role: roleType,
