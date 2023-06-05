@@ -6,7 +6,7 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import Admin from "@navigation/Admin";
 import Owner from "@navigation/Owner";
 import User from "@navigation/User";
-import Loading from "@components/screens/Loading";
+import { Loading } from "@components/common";
 
 import { auth, db } from "@config/firebase";
 

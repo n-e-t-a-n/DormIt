@@ -4,8 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, ToastAndroid, View } from "react-native";
 import { useSignOut } from "react-firebase-hooks/auth";
 
-import Loading from "@components/screens/Loading";
-import { Button } from "@components/common";
+import { Button, Loading } from "@components/common";
 import { auth } from "@config/firebase";
 import { color, font } from "@theme";
 

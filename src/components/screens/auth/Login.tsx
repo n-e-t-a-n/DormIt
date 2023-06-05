@@ -4,11 +4,9 @@ import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
-import { Button } from "@components/common";
+import { Button, Loading } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
-
-import Loading from "@components/screens/Loading";
 
 function Login({ navigation }: AuthStackScreenProps<"Login">) {
   const [email, setEmail] = useState<string>("");
