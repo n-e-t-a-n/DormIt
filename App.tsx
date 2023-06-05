@@ -6,13 +6,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Auth from "@navigation/Auth";
 import RoleResolver from "@navigation/RoleResolver";
 
-import createToastOnAuthChange from "@hooks/createToastOnAuthChange";
+import useCreateToastOnAuthChange from "@hooks/useCreateToastOnAuthChange";
 import { auth } from "@config/firebase";
 
 function App() {
   const [user] = useAuthState(auth);
-  
-  createToastOnAuthChange(user);
+
+  useCreateToastOnAuthChange(user);
 
   return <NavigationContainer>{user ? <RoleResolver /> : <Auth />}</NavigationContainer>;
 }

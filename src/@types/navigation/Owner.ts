@@ -12,6 +12,12 @@ export type OwnerTabParamList = {
   Reservation: undefined;
 };
 
-export type OwnerStackScreenProps<T extends keyof OwnerStackParamList> = StackScreenProps<OwnerStackParamList, T>;
+export type OwnerStackScreenProps<T extends keyof OwnerStackParamList> = StackScreenProps<
+  OwnerStackParamList,
+  T
+>;
 
-export type OwnerTabScreenProps<T extends keyof OwnerTabParamList> = CompositeScreenProps<BottomTabScreenProps<OwnerTabParamList, T>, OwnerStackScreenProps<keyof OwnerStackParamList>>;
+export type OwnerTabScreenProps<T extends keyof OwnerTabParamList> = CompositeScreenProps<
+  BottomTabScreenProps<OwnerTabParamList, T>,
+  OwnerStackScreenProps<keyof OwnerStackParamList>
+>;

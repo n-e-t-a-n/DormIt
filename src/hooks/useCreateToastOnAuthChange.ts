@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { User } from "firebase/auth";
 import { ToastAndroid } from "react-native";
 
-export default function createToastOnAuthChange(user: User | null | undefined): void {
+export default function useCreateToastOnAuthChange(user: User | null | undefined): void {
   const hasMounted = useRef(false);
 
   useEffect(() => {

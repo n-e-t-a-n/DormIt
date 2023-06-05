@@ -15,17 +15,17 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
 
   const handleRegister = async () => {
     try {
-        await createUserWithEmailAndPassword(auth, email?.trim(), password);
-        await createUser({ email: email }, "User");
+      await createUserWithEmailAndPassword(auth, email?.trim(), password);
+      await createUser({ email }, "User");
     } catch (error: any) {
-        const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
-        const formattedMessage = `${
-          (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
-        }.`;
+      const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
+      const formattedMessage = `${
+        (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
+      }.`;
 
-        ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
-      }
+      ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
     }
+  };
 
   return (
     <View style={styles.container}>
