@@ -18,7 +18,7 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
   useEffect(() => {
     if (user) {
       const saveUserInFirestore = async () => {
-        await createUser({ email: user?.email || "" }, "User");
+        await createUser({ email: user?.user?.email || "" }, "User");
       };
 
       saveUserInFirestore();
