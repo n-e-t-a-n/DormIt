@@ -12,11 +12,13 @@ import { auth } from "@config/firebase";
 
 function App() {
   const [user] = useAuthState(auth);
-  const [firestore] = useFirestoreState(user);
+  const [hasFirestoreData] = useFirestoreState(user);
 
   useCreateToastOnAuthChange(user);
 
-  return <NavigationContainer>{user && firestore ? <RoleResolver /> : <Auth />}</NavigationContainer>;
+  return (
+    <NavigationContainer>{user && hasFirestoreData ? <RoleResolver /> : <Auth />}</NavigationContainer>
+  );
 }
 
 export default App;
