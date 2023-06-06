@@ -16,8 +16,12 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
   const handleRegister = async () => {
-    await createUserWithEmailAndPassword(email?.trim(), password);
-    await createUser({ email, first_name: "Test", last_name: "Account", gender: "Female" }, "User");
+    try {
+      await createUserWithEmailAndPassword(email?.trim(), password);
+      await createUser({ email, first_name: "Test", last_name: "Account", gender: "Female" }, "User");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
