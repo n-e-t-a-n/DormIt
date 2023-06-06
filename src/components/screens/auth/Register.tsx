@@ -1,38 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useAuthState, useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
-import { createUser } from "@services/user";
-import { Button } from "@components/common";
+import { Button, Loading } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
+import { createUser } from "@services/user";
 
 function Register({ navigation }: AuthStackScreenProps<"Register">) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleRegister = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email?.trim(), password);
-      await createUser({ email }, "User");
-    } catch (error: any) {
+  const [createUserWithEmailAndPassword, , loading, error] = useCreateUserWithEmailAndPassword(auth);
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      const saveUserInFirestore = async () => {
+        await createUser({ email: user?.email || "" }, "User");
+      };
+
+      saveUserInFirestore();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (error) {
       const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
       const formattedMessage = `${
         (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
       }.`;
-
       ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
     }
-  };
+  }, [error]);
+
+  if (loading || user) return <Loading />;
 
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} placeholder="Email" onChangeText={setEmail} />
       <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={setPassword} />
 
-      <Button label="Register" style={styles.registerButton} onPress={handleRegister} />
+      <Button
+        label="Register"
+        style={styles.registerButton}
+        onPress={() => createUserWithEmailAndPassword(email?.trim(), password)}
+      />
       <Button label="Cancel" onPress={() => navigation.goBack()} />
     </View>
   );
