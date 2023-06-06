@@ -7,14 +7,16 @@ import Auth from "@navigation/Auth";
 import RoleResolver from "@navigation/RoleResolver";
 
 import useCreateToastOnAuthChange from "@hooks/useCreateToastOnAuthChange";
+import useFirestoreState from "@hooks/useFirestoreState";
 import { auth } from "@config/firebase";
 
 function App() {
   const [user] = useAuthState(auth);
+  const [firestore] = useFirestoreState(user);
 
   useCreateToastOnAuthChange(user);
 
-  return <NavigationContainer>{user ? <RoleResolver /> : <Auth />}</NavigationContainer>;
+  return <NavigationContainer>{user && firestore ? <RoleResolver /> : <Auth />}</NavigationContainer>;
 }
 
 export default App;
