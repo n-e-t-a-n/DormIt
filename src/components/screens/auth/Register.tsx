@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useAuthState, useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
@@ -13,8 +13,7 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const [createUserWithEmailAndPassword, , loading, error] = useCreateUserWithEmailAndPassword(auth);
-  const [user] = useAuthState(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
   useEffect(() => {
     if (user) {
