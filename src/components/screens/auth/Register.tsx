@@ -15,15 +15,10 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
 
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
-  useEffect(() => {
-    if (user) {
-      const saveUserInFirestore = async () => {
-        await createUser({ email: user?.user?.email || "" }, "User");
-      };
-
-      saveUserInFirestore();
-    }
-  }, [user]);
+  const handleRegister = async () => {
+    await createUserWithEmailAndPassword(email?.trim(), password);
+    await createUser({ email, first_name: "Test", last_name: "Account", gender: "Female" }, "User");
+  };
 
   useEffect(() => {
     if (error) {
@@ -42,11 +37,7 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
       <TextInput style={styles.input} placeholder="Email" onChangeText={setEmail} />
       <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={setPassword} />
 
-      <Button
-        label="Register"
-        style={styles.registerButton}
-        onPress={() => createUserWithEmailAndPassword(email?.trim(), password)}
-      />
+      <Button label="Register" style={styles.registerButton} onPress={handleRegister} />
       <Button label="Cancel" onPress={() => navigation.goBack()} />
     </View>
   );
