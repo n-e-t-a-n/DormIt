@@ -31,4 +31,4 @@ export type UserDetail = {
   educational_institution?: string;
   max_budget?: number;
   rating?: number;
-}
+};
