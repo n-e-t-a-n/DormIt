@@ -1,6 +1,8 @@
 import type { DocumentData } from "firebase/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
+import type { UserDetail } from "@@types/models";
+
 import { auth, db } from "@config/firebase";
 
 /**
@@ -49,7 +51,10 @@ export async function createUser(
     first_name,
     last_name,
     gender,
-  }: { email: string; first_name: string; last_name: string; gender: string },
+    phone_number,
+    emergency_contact,
+    address,
+  }: UserDetail,
   roleType: string
 ): Promise<void> {
   try {
@@ -58,6 +63,9 @@ export async function createUser(
       last_name,
       role: roleType,
       gender,
+      phone_number,
+      emergency_contact,
+      address,
     });
   } catch (error) {
     console.error(error);

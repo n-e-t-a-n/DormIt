@@ -18,7 +18,18 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
   const handleRegister = async () => {
     try {
       await createUserWithEmailAndPassword(email?.trim(), password);
-      await createUser({ email, first_name: "Test", last_name: "Account", gender: "Female" }, "User");
+      await createUser(
+        {
+          email,
+          first_name: "Test",
+          last_name: "Account",
+          gender: "Female",
+          phone_number: 09115827598,
+          emergency_contact: "emergency@contact.com",
+          address: "Pajac, Lapu-Lapu City, Cebu",
+        },
+        "User"
+      );
     } catch (error) {
       console.log(error);
     }
