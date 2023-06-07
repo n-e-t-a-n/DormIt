@@ -6,7 +6,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Auth from "@navigation/Auth";
 import RoleResolver from "@navigation/RoleResolver";
 
-import useCreateToastOnAuthChange from "@hooks/useCreateToastOnAuthChange";
+import { ToastAndroid } from "react-native";
+
+import useEffectAfterMount from "@hooks/useEffectAfterMount";
 import useFirestoreState from "@hooks/useFirestoreState";
 import { auth } from "@config/firebase";
 
@@ -14,7 +16,10 @@ function App() {
   const [user] = useAuthState(auth);
   const [hasFirestoreData] = useFirestoreState(user);
 
-  useCreateToastOnAuthChange(user);
+  useEffectAfterMount(() => {
+    const message = user ? "Successfully logged in." : "You've logged out";
+    ToastAndroid.show(message, ToastAndroid.SHORT);
+  }, [user]);
 
   return (
     <NavigationContainer>{user && hasFirestoreData ? <RoleResolver /> : <Auth />}</NavigationContainer>
