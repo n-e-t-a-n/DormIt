@@ -4,15 +4,11 @@ export default function useEffectAfterMount(fn: EffectCallback, inputs: Readonly
   const hasMounted = useRef(false);
 
   useEffect(() => {
-    const memoizedFn = () => {
-      fn();
-    };
-
     if (hasMounted.current) {
-      return memoizedFn();
+      return fn();
     }
     hasMounted.current = true;
 
     return () => {};
-  }, [fn, inputs]);
+  }, [inputs]);
 }
