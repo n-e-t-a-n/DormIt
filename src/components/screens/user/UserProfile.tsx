@@ -23,7 +23,7 @@ function UserProfile() {
       <Text>Username: </Text>
       <Text>Email: {auth.currentUser?.email}</Text>
 
-      <Button label="Logout" style={styles.logoutButton} onPress={() => signOut()} />
+      <Button label="Logout" style={styles.logoutButton} onPress={signOut} />
     </View>
   );
 }
