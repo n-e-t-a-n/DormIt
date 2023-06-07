@@ -24,14 +24,14 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
           first_name: "Test",
           last_name: "Account",
           gender: "Female",
-          phone_number: 09115827598,
+          phone_number: 9115827598,
           emergency_contact: "emergency@contact.com",
           address: "Pajac, Lapu-Lapu City, Cebu",
         },
         "User"
       );
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error();
     }
   };
 

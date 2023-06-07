@@ -24,7 +24,7 @@ function Home() {
       <Text style={styles.email}>{auth.currentUser?.email} | Admin</Text>
       <StatusBar />
 
-      <Button label="Logout" style={styles.logoutButton} onPress={() => signOut()} />
+      <Button label="Logout" style={styles.logoutButton} onPress={signOut} />
     </View>
   );
 }

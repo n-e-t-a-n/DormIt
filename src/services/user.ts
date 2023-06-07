@@ -46,15 +46,7 @@ export async function getAuthUser(): Promise<DocumentData | null> {
  * @returns Returns nothing.
  */
 export async function createUser(
-  {
-    email,
-    first_name,
-    last_name,
-    gender,
-    phone_number,
-    emergency_contact,
-    address,
-  }: UserDetail,
+  { email, first_name, last_name, gender, phone_number, emergency_contact, address }: UserDetail,
   roleType: string
 ): Promise<void> {
   try {
