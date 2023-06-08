@@ -46,11 +46,22 @@ export async function getAuthUser(): Promise<DocumentData | null> {
  * @returns Returns nothing.
  */
 export async function createUser(
-  { email, first_name, last_name, gender, phone_number, emergency_contact, address }: UserDetail,
+  {
+    email,
+    first_name,
+    last_name,
+    gender,
+    phone_number,
+    emergency_contact,
+    address,
+    educational_institution,
+    max_budget,
+    rating,
+  }: UserDetail,
   roleType: string
 ): Promise<void> {
   try {
-    await setDoc(doc(db, "users", email?.trim()?.toLowerCase()), {
+    const userDoc= {
       first_name,
       last_name,
       role: roleType,
@@ -58,7 +69,12 @@ export async function createUser(
       phone_number,
       emergency_contact,
       address,
-    });
+      educational_institution: educational_institution || null,
+      max_budget: max_budget || null,
+      rating: rating || null,
+    };
+
+    await setDoc(doc(db, "users", email?.trim()?.toLowerCase()), userDoc);
   } catch (error) {
     console.error(error);
   }
