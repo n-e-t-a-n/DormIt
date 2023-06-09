@@ -8,8 +8,8 @@ import RoleResolver from "@navigation/RoleResolver";
 
 import { ToastAndroid } from "react-native";
 
-import useEffectAfterMount from "@hooks/useEffectAfterMount";
-import useFirestoreState from "@hooks/useFirestoreState";
+import useEffectAfterMount from "@hooks/effectAfterMount";
+import useFirestoreState from "@hooks/firestoreState";
 import { auth } from "@config/firebase";
 
 function App() {
