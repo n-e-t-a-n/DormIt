@@ -1,56 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
-import { Button } from "@components/common";
+import { Button, Loading } from "@components/common";
 import { auth } from "@config/firebase";
-import { getAuthUser } from "@services/user";
 import { color } from "@theme";
 
 function Login({ navigation }: AuthStackScreenProps<"Login">) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email?.trim(), password)
-      .then(async () => {
-        ToastAndroid.show("Successfully logged in.", ToastAndroid.SHORT);
+  const [signInWithEmailAndPassword, , loading, error] = useSignInWithEmailAndPassword(auth);
 
-        const user = await getAuthUser();
-        if (user) {
-          switch (user.role) {
-            case "User":
-              navigation.navigate("UserStack", { screen: "TabScreens" });
-              break;
-            case "Owner":
-              navigation.navigate("OwnerStack", { screen: "TabScreens" });
-              break;
-            case "Admin":
-              navigation.navigate("AdminStack", { screen: "Home" });
-              break;
-            default:
-              break;
-          }
-        }
-      })
-      .catch((error) => {
-        const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
-        const formattedMessage = `${
-          (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
-        }.`;
+  useEffect(() => {
+    if (error) {
+      const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
+      const formattedMessage = `${
+        (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
+      }.`;
+      ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
+    }
+  }, [error]);
 
-        ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
-      });
-  };
+  if (loading) return <Loading />;
 
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} placeholder="Email" onChangeText={setEmail} />
       <TextInput style={styles.input} placeholder="Password" secureTextEntry onChangeText={setPassword} />
 
-      <Button label="Login" style={styles.loginButton} onPress={handleLogin} />
+      <Button
+        label="Login"
+        style={styles.loginButton}
+        onPress={() => signInWithEmailAndPassword(email?.trim(), password)}
+      />
       <Button label="Register" onPress={() => navigation.navigate("Register")} />
     </View>
   );

@@ -1,6 +1,8 @@
 import type { DocumentData } from "firebase/firestore";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
+import type { UserDetail } from "@@types/models";
+
 import { auth, db } from "@config/firebase";
 
 /**
@@ -43,14 +45,36 @@ export async function getAuthUser(): Promise<DocumentData | null> {
  * @param {string} roleType role of the user.
  * @returns Returns nothing.
  */
-export async function createUser({ email }: { email: string }, roleType: string): Promise<void> {
+export async function createUser(
+  {
+    email,
+    first_name,
+    last_name,
+    gender,
+    phone_number,
+    emergency_contact,
+    address,
+    educational_institution,
+    max_budget,
+    rating,
+  }: UserDetail,
+  roleType: string
+): Promise<void> {
   try {
-    await setDoc(doc(db, "users", email), {
-      first_name: "test",
-      last_name: "account",
+    const userDoc = {
+      first_name,
+      last_name,
       role: roleType,
-      gender: "male",
-    });
+      gender,
+      phone_number,
+      emergency_contact,
+      address,
+      educational_institution: educational_institution || null,
+      max_budget: max_budget || null,
+      rating: rating || null,
+    };
+
+    await setDoc(doc(db, "users", email?.trim().toLowerCase()), userDoc);
   } catch (error) {
     console.error(error);
   }

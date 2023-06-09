@@ -17,3 +17,18 @@ export type Dorm = {
   price?: string;
   contactInfo?: string;
 };
+
+export type UserDetail = {
+  // Required
+  email: string;
+  first_name: string;
+  last_name: string;
+  gender: string;
+  phone_number: number;
+  emergency_contact: number | string;
+  address: string;
+  // Optional
+  educational_institution?: string;
+  max_budget?: number;
+  rating?: number;
+};

@@ -3,10 +3,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import type { AuthStackScreenProps } from "@@types/navigation/Auth";
 import type { UserStackParamList, UserTabParamList } from "@@types/navigation/User";
 import { DormDetails, Home, Search, UserProfile } from "@components/screens/user";
-import { auth } from "@config/firebase";
 
 const Tab = createBottomTabNavigator<UserTabParamList>();
 const Stack = createStackNavigator<UserStackParamList>();
@@ -21,9 +19,7 @@ function TabScreens() {
   );
 }
 
-export default function User({ navigation }: AuthStackScreenProps<"UserStack">) {
-  if (!auth.currentUser) navigation.goBack();
-
+export default function User() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="TabScreens" component={TabScreens} options={{ headerShown: false }} />

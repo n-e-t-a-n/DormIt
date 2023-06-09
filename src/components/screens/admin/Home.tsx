@@ -1,36 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { StatusBar } from "expo-status-bar";
-import { signOut } from "firebase/auth";
 import { StyleSheet, Text, ToastAndroid, View } from "react-native";
+import { useSignOut } from "react-firebase-hooks/auth";
 
-import type { AdminStackScreenProps } from "@@types/navigation/Admin";
-import { Button } from "@components/common";
+import { Button, Loading } from "@components/common";
 import { auth } from "@config/firebase";
 import { color, font } from "@theme";
 
-function Home({ navigation }: AdminStackScreenProps<"Home">) {
-  React.useLayoutEffect(() => {
-    navigation.setOptions({ headerLeft: undefined });
-  }, [navigation]);
+function Home() {
+  const [signOut, loading, error] = useSignOut(auth);
 
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        ToastAndroid.show("You've logged out.", ToastAndroid.SHORT);
-        navigation.goBack();
-      })
-      .catch((error) => {
-        ToastAndroid.show(error.code, ToastAndroid.SHORT);
-      });
-  };
+  useEffect(() => {
+    if (error) {
+      ToastAndroid.show(error.message, ToastAndroid.SHORT);
+    }
+  }, [error]);
+
+  if (loading) return <Loading />;
 
   return (
     <View style={styles.container}>
       <Text style={styles.email}>{auth.currentUser?.email} | Admin</Text>
       <StatusBar />
 
-      <Button label="Logout" style={styles.logoutButton} onPress={handleLogout} />
+      <Button label="Logout" style={styles.logoutButton} onPress={signOut} />
     </View>
   );
 }

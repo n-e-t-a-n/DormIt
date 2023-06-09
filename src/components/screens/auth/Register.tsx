@@ -1,32 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { StyleSheet, TextInput, ToastAndroid, View } from "react-native";
 
 import type { AuthStackScreenProps } from "@@types/navigation/Auth";
-import { Button } from "@components/common";
+import { Button, Loading } from "@components/common";
 import { auth } from "@config/firebase";
 import { color } from "@theme";
+import { createUser } from "@services/user";
 
 function Register({ navigation }: AuthStackScreenProps<"Register">) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleRegister = async () => {
-    createUserWithEmailAndPassword(auth, email?.trim(), password)
-      .then(() => {
-        navigation.goBack();
-        ToastAndroid.show("Account created successfully!", ToastAndroid.SHORT);
-      })
-      .catch((error) => {
-        const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
-        const formattedMessage = `${
-          (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
-        }.`;
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
-        ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
-      });
+  const handleRegister = async () => {
+    try {
+      await createUserWithEmailAndPassword(email?.trim(), password);
+      await createUser(
+        {
+          email,
+          first_name: "Test",
+          last_name: "Account",
+          gender: "Female",
+          phone_number: 9115827598,
+          emergency_contact: "emergency@contact.com",
+          address: "Pajac, Lapu-Lapu City, Cebu",
+        },
+        "User"
+      );
+    } catch (errorMessage) {
+      console.error(errorMessage);
+    }
   };
+
+  useEffect(() => {
+    if (error) {
+      const warningMessage = error?.code?.replace("auth/", "")?.replace(/-/g, " ");
+      const formattedMessage = `${
+        (warningMessage?.charAt(0).toUpperCase() ?? "") + (warningMessage?.slice(1) ?? "")
+      }.`;
+      ToastAndroid.show(formattedMessage, ToastAndroid.SHORT);
+    }
+  }, [error]);
+
+  if (loading || user) return <Loading />;
 
   return (
     <View style={styles.container}>
