@@ -61,7 +61,7 @@ export async function createUser(
   roleType: string
 ): Promise<void> {
   try {
-    const userDoc= {
+    const userDoc = {
       first_name,
       last_name,
       role: roleType,
@@ -74,7 +74,7 @@ export async function createUser(
       rating: rating || null,
     };
 
-    await setDoc(doc(db, "users", email?.trim()?.toLowerCase()), userDoc);
+    await setDoc(doc(db, "users", email?.trim().toLowerCase()), userDoc);
   } catch (error) {
     console.error(error);
   }

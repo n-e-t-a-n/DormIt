@@ -1,6 +1,6 @@
-import { DocumentHook, useDocument } from "react-firebase-hooks/firestore";
-import { DocumentData, doc } from "firebase/firestore";
-import { User } from "firebase/auth";
+import { type DocumentHook, useDocument } from "react-firebase-hooks/firestore";
+import { type DocumentData, doc } from "firebase/firestore";
+import { type User } from "firebase/auth";
 
 import { db } from "@config/firebase";
 

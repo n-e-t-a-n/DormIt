@@ -30,8 +30,8 @@ function Register({ navigation }: AuthStackScreenProps<"Register">) {
         },
         "User"
       );
-    } catch (err) {
-      console.error();
+    } catch (errorMessage) {
+      console.error(errorMessage);
     }
   };
 
